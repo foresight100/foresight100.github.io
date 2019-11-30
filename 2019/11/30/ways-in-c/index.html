@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="Foresight&#39;s blog wangqiuchen 王秋辰">
+  <meta name="author" content="Wang Qiuchen">
+  <meta name="keywords" content="blog,life,coding">
+  <title>ways_in_c ~ Foresight&#39;blog</title>
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.2/css/all.min.css"  >
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.8.9/css/mdb.min.css"  >
+<link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css"  >
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Foresight&#39;blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">列表</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">目录</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期六, 十一月 30日 2019, 10:08 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.3k 字
+                  </span>&nbsp;
+                
+
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="1、冒泡排序（Bubble-Sort）"><a href="#1、冒泡排序（Bubble-Sort）" class="headerlink" title="1、冒泡排序（Bubble Sort）"></a>1、冒泡排序（Bubble Sort）</h2><h3 id="算法描述："><a href="#算法描述：" class="headerlink" title="算法描述："></a>算法描述：</h3><ul>
+<li>比较相邻的元素。如果第一个比第二个大，就交换它们两个；</li>
+<li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，这样在最后的元素应该会是最大的数；</li>
+<li>针对所有的元素重复以上的步骤，除了最后一个；</li>
+<li>重复步骤1~3，直到排序完成。<h3 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">void BubbleSort(int *arr, int size)  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    int i, j, tmp;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i = 0; i &lt; size - 1; i++) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">for</span> (j = 0; j &lt; size - i - 1; j++) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j+1]) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">                tmp = arr[j];  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">                arr[j] = arr[j+1];  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">                arr[j+1] = tmp;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="2-选择排序（Selection-Sort）"><a href="#2-选择排序（Selection-Sort）" class="headerlink" title="2.选择排序（Selection Sort）"></a>2.选择排序（Selection Sort）</h2><h3 id="算法描述：-1"><a href="#算法描述：-1" class="headerlink" title="算法描述："></a>算法描述：</h3><ul>
+<li>初始状态：无序区为R[1..n]，有序区为空；</li>
+<li>第i趟排序(i=1,2,3…n-1)开始时，当前有序区和无序区分别为R[1..i-1]和R(i..n）。该趟排序从当前无序区中-选出关键字最小的记录 R[k]，将它与无序区的第1个记录R交换，使R[1..i]和R[i+1..n)分别变为记录个数增加1个的新有序区和记录个数减少1个的新无序区；</li>
+<li>n-1趟结束，数组有序化了。<h3 id="代码实现：-1"><a href="#代码实现：-1" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">void SelectionSort(int *arr, int size)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    int i, j, k, tmp;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i = 0; i &lt; size - 1; i++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        k = i;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">for</span> (j = i + 1; j &lt; size; j++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span> (arr[j] &lt; arr[k]) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">                k = j;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        tmp = arr[k];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        arr[k] = arr[i];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        arr[i] = tmp;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="3-插入排序（Insertion-Sort）"><a href="#3-插入排序（Insertion-Sort）" class="headerlink" title="3.插入排序（Insertion Sort）"></a>3.插入排序（Insertion Sort）</h2><h3 id="算法描述：-2"><a href="#算法描述：-2" class="headerlink" title="算法描述："></a>算法描述：</h3><ul>
+<li>从第一个元素开始，该元素可以认为已经被排序；</li>
+<li>取出下一个元素，在已经排序的元素序列中从后向前扫描；</li>
+<li>如果该元素（已排序）大于新元素，将该元素移到下一位置；</li>
+<li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；</li>
+<li>将新元素插入到该位置后；</li>
+<li>重复步骤2~5。<h3 id="代码实现：-2"><a href="#代码实现：-2" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">void InsertionSort(int *arr, int size)    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    int i, j, tmp;    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i = 1; i &lt; size; i++) &#123;    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> (arr[i] &lt; arr[i-1]) &#123;    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            tmp = arr[i];    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">for</span> (j = i - 1; j &gt;= 0 &amp;&amp; arr[j] &gt; tmp; j--) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">                arr[j+1] = arr[j];    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">            &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            arr[j+1] = tmp;    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &#125;          </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="4、希尔排序（Shell-Sort）"><a href="#4、希尔排序（Shell-Sort）" class="headerlink" title="4、希尔排序（Shell Sort）"></a>4、希尔排序（Shell Sort）</h2><h3 id="算法描述：-3"><a href="#算法描述：-3" class="headerlink" title="算法描述："></a>算法描述：</h3><ul>
+<li>选择一个增量序列t1，t2，…，tk，其中ti&gt;tj，tk=1；</li>
+<li>按增量序列个数k，对序列进行k 趟排序；</li>
+<li>每趟排序，根据对应的增量ti，将待排序列分割成若干长度为m 的子序列，分别对各子表进行直接插入排序。仅增量因子为1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。<h3 id="代码实现：-3"><a href="#代码实现：-3" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">void ShellSort(int *arr, int size)  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    int i, j, tmp, increment;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (increment = size/ 2; increment &gt; 0; increment /= 2) &#123;    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">for</span> (i = increment; i &lt; size; i++) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            tmp = arr[i];  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">for</span> (j = i - increment; j &gt;= 0 &amp;&amp; temp &lt; arr[j]; j -= increment) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">                arr[j + increment] = arr[j];  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">            &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            arr[j + increment] = tmp;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="5-归并排序（Merge-Sort）"><a href="#5-归并排序（Merge-Sort）" class="headerlink" title="5.归并排序（Merge Sort）"></a>5.归并排序（Merge Sort）</h2><h3 id="算法描述：-4"><a href="#算法描述：-4" class="headerlink" title="算法描述："></a>算法描述：</h3><ul>
+<li>把长度为n的输入序列分成两个长度为n/2的子序列；</li>
+<li>对这两个子序列分别采用归并排序；</li>
+<li>将两个排序好的子序列合并成一个最终的排序序列。<h3 id="代码实现：-4"><a href="#代码实现：-4" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#define MAXSIZE 100  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">void Merge(int *SR, int *TR, int i, int middle, int rightend) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    int j, k, l;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (k = i, j = middle + 1; i &lt;= middle &amp;&amp; j &lt;= rightend; k++) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> (SR[i] &lt; SR[j]) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            TR[k] = SR[i++];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        &#125; <span class="keyword">else</span> &#123; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            TR[k] = SR[j++];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (i &lt;= middle) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">for</span> (l = 0; l &lt;= middle - i; l++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">            TR[k + l] = SR[i + l];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (j &lt;= rightend) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">for</span> (l = 0; l &lt;= rightend - j; l++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">            TR[k + l] = SR[j + l];  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">void MergeSort(int *SR, int *TR1, int s, int t) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    int middle;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    int TR2[MAXSIZE + 1];  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (s == t) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        TR1[s] = SR[s]; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">        middle = (s + t) / 2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">        MergeSort(SR, TR2, s, middle);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">        MergeSort(SR, TR2, middle + 1, t);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">        Merge(TR2, TR1, s, middle, t);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="6-快速排序（Quick-Sort）"><a href="#6-快速排序（Quick-Sort）" class="headerlink" title="6.快速排序（Quick Sort）"></a>6.快速排序（Quick Sort）</h2><h3 id="算法描述：-5"><a href="#算法描述：-5" class="headerlink" title="算法描述："></a>算法描述：</h3><ul>
+<li>从数列中挑出一个元素，称为 “基准”（pivot）；</li>
+<li>重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；</li>
+<li>递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。<h3 id="代码实现：-5"><a href="#代码实现：-5" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">void QuickSort(int *arr, int maxlen, int begin, int end)  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    int i, j;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (begin &lt; end) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        i = begin + 1;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        j = end;        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">while</span> (i &lt; j) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span>(arr[i] &gt; arr[begin]) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">                swap(&amp;arr[i], &amp;arr[j]); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">                j--;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            &#125; <span class="keyword">else</span> &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">                i++; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">            &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> (arr[i] &gt;= arr[begin]) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">            i--;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        swap(&amp;arr[begin], &amp;arr[i]);      </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        QuickSort(arr, maxlen, begin, i);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        QuickSort(arr, maxlen, j, end);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">void swap(int *a, int *b)    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    int temp;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    temp = *a;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    *a = *b;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    *b = temp;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="7-堆排序（Heap-Sort）"><a href="#7-堆排序（Heap-Sort）" class="headerlink" title="7.堆排序（Heap Sort）"></a>7.堆排序（Heap Sort）</h2><h3 id="算法描述：-6"><a href="#算法描述：-6" class="headerlink" title="算法描述："></a>算法描述：</h3><ul>
+<li>将初始待排序关键字序列(R1,R2….Rn)构建成大顶堆，此堆为初始的无序区；</li>
+<li>将堆顶元素R[1]与最后一个元素R[n]交换，此时得到新的无序区(R1,R2,……Rn-1)和新的有序区(Rn),且满足R[1,2…n-1]&lt;=R[n]；</li>
+<li>由于交换后新的堆顶R[1]可能违反堆的性质，因此需要对当前无序区(R1,R2,……Rn-1)调整为新堆，然后再次将R[1]与无序区最后一个元素交换，得到新的无序区(R1,R2….Rn-2)和新的有序区(Rn-1,Rn)。不断重复此过程直到有序区的元素个数为n-1，则整个排序过程完成。<h3 id="代码实现：-6"><a href="#代码实现：-6" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">void Heapify(int *arr, int m, int size)  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    int i, tmp;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    tmp = arr[m];  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i = 2 * m; i &lt;= size; i *= 2) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> (i + 1 &lt;= size &amp;&amp; arr[i] &lt; arr[i+1]) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            i++;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> (arr[i] &lt; tmp) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            <span class="built_in">break</span>;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        arr[m] = arr[i];  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        m = i;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    arr[m] = tmp;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">void BulidHeap(int *arr, int size)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    int i;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i = n / 2; i &gt; 0; i--) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        Heapify(arr, i, size);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">&#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">void swap(int *arr, int i, int j)  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    int tmp;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    tmp = arr[i];  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    arr[i] = arr[j];  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    arr[j] = tmp;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">&#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">void HeapSort(int *arr, int size)  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    int i;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">    BulidHeap(arr, size);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i = size; i &gt; 1; i--) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">        swap(arr, 1, i);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">        Heapify(arr, 1, i - 1);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="计数排序（Counting-Sort）"><a href="#计数排序（Counting-Sort）" class="headerlink" title="计数排序（Counting Sort）"></a>计数排序（Counting Sort）</h2><h3 id="算法描述：-7"><a href="#算法描述：-7" class="headerlink" title="算法描述："></a>算法描述：</h3><ul>
+<li>找出待排序的数组中最大和最小的元素；</li>
+<li>统计数组中每个值为i的元素出现的次数，存入数组C的第i项；</li>
+<li>对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）；</li>
+<li>反向填充目标数组：将每个元素i放在新数组的第C(i)项，每放一个元素就将C(i)减去1。<h3 id="代码实现：-7"><a href="#代码实现：-7" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">void CountingSort(int *A, int *B, int n, int k)  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    int *C = (int *)malloc(sizeof(int) * (k + 1));  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    int i;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i = 0; i &lt;= k; i++) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        C[i] = 0;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i = 0; i &lt; n; i++) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        C[A[i]]++;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i = 1; i &lt;= k; i++) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        C[i] = C[i] + C[i - 1];  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i = n - 1; i &gt;= 0; i--) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        B[C[A[i]] - 1] = A[i];  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        C[A[i]]--;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="9-桶排序（Bucket-Sort）"><a href="#9-桶排序（Bucket-Sort）" class="headerlink" title="9.桶排序（Bucket Sort）"></a>9.桶排序（Bucket Sort）</h2><h3 id="算法描述：-8"><a href="#算法描述：-8" class="headerlink" title="算法描述："></a>算法描述：</h3><ul>
+<li>设置一个定量的数组当作空桶；</li>
+<li>遍历输入数据，并且把数据一个一个放到对应的桶里去；</li>
+<li>对每个不是空的桶进行排序；</li>
+<li>从不是空的桶里把排好序的数据拼接起来。<h3 id="代码实现：-8"><a href="#代码实现：-8" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">void bucketSort(int *arr, int size, int max)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    int i,j;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    int buckets[max];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    memset(buckets, 0, max * sizeof(int));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i = 0; i &lt; size; i++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        buckets[arr[i]]++; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> (i = 0, j = 0; i &lt; max; i++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">while</span>((buckets[i]--) &gt;0)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            arr[j++] = i;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="10-基数排序（Radix-Sort）"><a href="#10-基数排序（Radix-Sort）" class="headerlink" title="10.基数排序（Radix Sort）"></a>10.基数排序（Radix Sort）</h2><h3 id="算法描述：-9"><a href="#算法描述：-9" class="headerlink" title="算法描述："></a>算法描述：</h3><ul>
+<li>取得数组中的最大数，并取得位数；</li>
+<li>arr为原始数组，从最低位开始取每个位组成radix数组；</li>
+<li>对radix进行计数排序（利用计数排序适用于小范围数的特点）；<h3 id="代码实现：-9"><a href="#代码实现：-9" class="headerlink" title="代码实现："></a>代码实现：</h3>int get_index(int num, int dec, int order)<br>{<br>  int i, j, n;<br>  int index;<br>  int div;<br>  for (i = dec; i &gt; order; i–) {<pre><code>n = 1;
+for (j = 0; j &lt; dec - 1; j++)
+    n *= 10;
+div = num / n;
+num -= div * n;
+dec--;</code></pre>  }<br>  n = 1;<br>  for (i = 0; i &lt; order - 1; i++)<pre><code>n *= 10;</code></pre>  index = num / n;<br>  return index;<br>}</li>
+</ul>
+<p>void RadixSort(int *arr, int len, int dec, int order)<br>{<br>    int i, j;<br>    int index;<br>    int tmp[len];<br>    int num[10];<br>    memset(num, 0, 10 * sizeof(int));<br>    memset(tmp, 0, len * sizeof(int));</p>
+<pre><code>if (dec &lt; order) {
+    return;
+}
+for (i = 0; i &lt; len; i++) {
+    index = get_index(arr[i], dec, order);
+    num[index]++; 
+}
+
+for (i = 1; i &lt; 10; i++) {
+    num[i] += num[i-1];
+}
+for (i = len - 1; i &gt;= 0; i--) {
+    index = get_index(arr[i], dec, order); 
+    j = --num[index]; 
+    tmp[j] = arr[i]; 
+}
+
+for (i = 0; i &lt; len; i++) {
+    arr[i] = tmp[i]; 
+}
+RadixSort(arr, len, dec, order+1);</code></pre><p>}<br>```</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js" ></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+<script src="https://cdn.staticfile.org/mdbootstrap/4.8.9/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="https://cdn.staticfile.org/tocbot/4.8.0/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="https://cdn.staticfile.org/smooth-scroll/16.1.0/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="https://cdn.staticfile.org/prettify/r298/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/typed.js/2.0.10/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "ways_in_c&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 60,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/anchor-js/4.2.0/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>
