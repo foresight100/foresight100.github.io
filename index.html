@@ -24,6 +24,8 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
+  <link rel="stylesheet" href="/lib/prettify/github-v2.min.css"  >
+
 <link rel="stylesheet" href="/css/main.css"  >
 
 
@@ -143,7 +145,19 @@
 比较相邻的元素。如果第一个比第二个大，就交换它们两个；
 对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，这样在最后的元素应该会是最大的数；
 针对所有的元素重复以上的步骤，除了最后一个；
-重复步骤1~3，直到排序完成。代码实现：void BubbleSort(int *arr, int size)  &#123;      int i, j, tmp;      for (i &#x3D; 0; i &lt; size - 1; i++) &#123;          for (j &#x3D; 0; j &lt; size - i - 1; j++) &#123;              if (arr[j] &gt; arr[j+1]) &#123;                  tmp &#x3D; arr[j];                  arr[j] &#x3D; arr[j+1];                  arr[j+1] &#x3D; tmp;              &#125;  </div>
+重复步骤1~3，直到排序完成。
+代码实现：  void BubbleSort(int *arr, int size)  
+  {  
+      int i, j, tmp;  
+      for (i = 0; i &lt; size - 1; i++) {  
+          for (j = 0; j &lt; size - i - 1; j++) {  
+              if (arr[j] &gt; arr[j+1]) {  
+                  tmp = arr[j];  
+                  arr[j] = arr[j+1];  
+                  arr[j+1] = tmp;  
+              }  
+          }  
+     </div>
         </div>
       </a>
 
@@ -304,6 +318,14 @@
 
 
 
+
+  <script src="https://cdn.staticfile.org/prettify/r298/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  ');
+      prettyPrint();
+    })
+  </script>
 
 
 
