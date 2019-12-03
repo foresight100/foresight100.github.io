@@ -120,7 +120,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    839 字
+                    847 字
                   </span>&nbsp;
                 
 
@@ -161,14 +161,14 @@
 <h3 id="分帧"><a href="#分帧" class="headerlink" title="分帧"></a>分帧</h3><ul>
 <li>利用语音信号在短时间内频谱特性平稳的特点，将语音信号分为很小的时间段，即“帧”，来研究。我们的程序取帧长为256  ，帧移为80</li>
 <li>简而言之，语音信号<strong>整体上不稳定，但局部上可以看作是稳定的</strong>,在以后的语音处理中，需要输入一个稳定的信号，所以需要对整个语音信号进行帧处理，即将其分割成多个片段。 </li>
-<li>在10-30ms范围内，可以认为信号是稳定的。一般以不少于20毫秒为帧，约1/2的时间作为帧移位帧，帧移位是指相邻两帧之间的重叠区域，以避免相邻两帧的变化。<br>![]（/img/matlabrecognize/1.png)</li>
+<li>在10-30ms范围内，可以认为信号是稳定的。一般以不少于20毫秒为帧，约1/2的时间作为帧移位帧，帧移位是指相邻两帧之间的重叠区域，以避免相邻两帧的变化。</li>
+<li>![]（/img/matlabrecognize/1.png)</li>
 </ul>
 <h3 id="预加重"><a href="#预加重" class="headerlink" title="预加重"></a>预加重</h3><ul>
 <li>将语音信号通过预加重滤波器来滤除低频干扰，而将对语音识别<strong>更为有用的高频部分</strong>进行频谱提升</li>
 <li><strong>并不是在语音信号处理中任何时候都要进行预加重的</strong>，只有在需要提升高频分量时才进行预加重处理，例如共振峰提取时。</li>
-<li><font color='red'> **往往高频信号含有更多的信息。**</font>
-
-</li>
+<li><font color='red'> **往往高频信号含有更多的信息。**</font></li>
+<li>![]（/img/matlabrecognize/2.png)</li>
 </ul>
 <h3 id="加窗"><a href="#加窗" class="headerlink" title="加窗"></a>加窗</h3><ul>
 <li>加窗有利于语音信号保持短时平稳性。在进行后续不同处理时选择窗口不同</li>
@@ -180,6 +180,7 @@
 <li>对于非整周期采样的情况，必须考虑如何减少加窗时造成的泄漏误差，主要的措施是使用合理的加窗函数，使信号截断的锐角钝化，从而使频谱的扩散减到最少。</li>
 </ul>
 </li>
+<li>![]（/img/matlabrecognize/3.png)</li>
 </ul>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><em><a href="https://www.ilovematlab.cn/thread-300509-1-1.html" target="_blank" rel="noopener">Matlab进行语音预加重处理</a></em></li>
