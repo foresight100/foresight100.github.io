@@ -184,11 +184,11 @@
 <li>利用语音信号在短时间内频谱特性平稳的特点，将语音信号分为很小的时间段，即“帧”，来研究。我们的程序取帧长为256  ，帧移为80</li>
 <li>简而言之，语音信号<font color="red"><strong>整体上不稳定，但局部上可以看作是稳定的</strong></font>,在以后的语音处理中，需要输入一个稳定的信号，所以需要对整个语音信号进行帧处理，即将其分割成多个片段。 </li>
 <li>在10-30ms范围内，可以认为信号是稳定的。一般以不少于20毫秒为帧，约1/2的时间作为帧移位帧，帧移位是指相邻两帧之间的重叠区域，以避免相邻两帧的变化。</li>
-<li><img src="/.io//../themes/fluid/source/img/matlabrecognize/1.png" srcset="undefined" alt="分帧"><h3 id="预加重"><a href="#预加重" class="headerlink" title="预加重"></a>预加重</h3></li>
+<li><img src="/.io//fluid/source/img/matlabrecognize/1.png" srcset="undefined" alt="分帧"><h3 id="预加重"><a href="#预加重" class="headerlink" title="预加重"></a>预加重</h3></li>
 <li>将语音信号通过预加重滤波器来滤除低频干扰，而将对语音识别<font color="red"><strong>更为有用的高频部分</strong></font>进行频谱提升</li>
 <li><strong>并不是在语音信号处理中任何时候都要进行预加重的</strong>，只有在需要提升高频分量时才进行预加重处理，例如共振峰提取时。</li>
 <li><font color="red"> **往往高频信号含有更多的信息。**</font></li>
-<li><img src="/.io//../themes/fluid/source/img/matlabrecognize/2.png" srcset="undefined" alt="预加重"><h3 id="加窗"><a href="#加窗" class="headerlink" title="加窗"></a>加窗</h3></li>
+<li><img src="/.io//fluid/source/img/matlabrecognize/2.png" srcset="undefined" alt="预加重"><h3 id="加窗"><a href="#加窗" class="headerlink" title="加窗"></a>加窗</h3></li>
 <li><strong>加窗的目的就是让不太连续的地方（最后一个点和第一个的连接处）看上去平滑了，没有原来那么明显的突变了</strong></li>
 <li>加窗有利于语音信号保持短时平稳性。在进行后续不同处理时选择窗口不同</li>
 <li>函数窗的主要用于<font color="red"><strong>对截断处的不连续变化进行平滑，减少泄漏</strong>。</font>此外，加窗处理还有很多其它的原因，如减少噪声干扰、限定测试的持续时间、从频率接近的信号中分离出幅值不同的信号……</li>
@@ -199,7 +199,7 @@
 <li>对于非整周期采样的情况，必须考虑如何减少加窗时造成的泄漏误差，主要的措施是使用合理的加窗函数，使信号截断的锐角钝化，从而使频谱的扩散减到最少。</li>
 </ul>
 </li>
-<li><img src="/.io//../themes/fluid/source/img/matlabrecognize/3.png" srcset="undefined" alt="加窗"><h2 id="计算离散功率谱"><a href="#计算离散功率谱" class="headerlink" title="计算离散功率谱"></a>计算离散功率谱</h2></li>
+<li><img src="/.io//fluid/source/img/matlabrecognize/3.png" srcset="undefined" alt="加窗"><h2 id="计算离散功率谱"><a href="#计算离散功率谱" class="headerlink" title="计算离散功率谱"></a>计算离散功率谱</h2></li>
 <li>信号在时域上的变换通常很难看出信号的特性，所以通常将它转换为频域上的能量分布来观察。对预处理的每帧进行离散傅立叶变换得到其频谱，再取模的平方作为离散功率<br>谱S(n)</li>
 <li><img src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=c9f5c05add2a6059461de948495d5ffe/94cad1c8a786c917e7c47eaac33d70cf3ac75759.jpg" srcset="undefined" alt="离散功率谱"></li>
 <li><strong><font color="red">功率谱表示了信号功率随着频率的变化关系</font></strong><h2 id="将功率谱通过滤波器组"><a href="#将功率谱通过滤波器组" class="headerlink" title="将功率谱通过滤波器组"></a>将功率谱通过滤波器组</h2></li>
