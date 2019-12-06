@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>学习笔记：Machine Learning(1)</title>
+    <link href="undefined2019/12/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMachine-Learning-1/"/>
+    <url>2019/12/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMachine-Learning-1/</url>
+    
+    <content type="html"><![CDATA[<ul><li>简介</li><li>框架处理</li><li>深入了解机器学习<a id="more"></a><h1 id="学习笔记：Machine-Learning-1"><a href="#学习笔记：Machine-Learning-1" class="headerlink" title="学习笔记：Machine Learning(1)"></a>学习笔记：Machine Learning(1)</h1></li><li>第一次接触machine learning</li><li>基于Google developer</li><li>参考<a href="https://developers.google.cn/machine-learning/crash-course" target="_blank" rel="noopener">https://developers.google.cn/machine-learning/crash-course</a><h2 id="TIPS"><a href="#TIPS" class="headerlink" title="TIPS"></a>TIPS</h2></li><li>由观察到统计而无需逻辑</li><li>最终延伸到自然科学</li><li>对大量样本<h2 id="问题构建"><a href="#问题构建" class="headerlink" title="问题构建"></a>问题构建</h2><h3 id="什么是（监督式）机器学习？"><a href="#什么是（监督式）机器学习？" class="headerlink" title="什么是（监督式）机器学习？"></a>什么是（监督式）机器学习？</h3></li><li>机器学习系统通过学习如何组合输入信息来对从未见过的数据做出有用的预测<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3></li><li>标签是我们要预测的事物，即简单线性回归中的 y 变量。标签可以是小麦未来的价格、图片中显示的动物品种、音频剪辑的含义或任何事物。<h3 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h3></li><li>特征是输入变量，即简单线性回归中的 x 变量。简单的机器学习项目可能会使用单个特征，而比较复杂的机器学习项目可能会使用数百万个特征</li><li>在垃圾邮件检测器示例中，特征可能包括：<ul><li>电子邮件文本中的字词</li><li>发件人的地址</li><li>发送电子邮件的时段</li><li>电子邮件中包含“一种奇怪的把戏”这样的短语。<h3 id="样本"><a href="#样本" class="headerlink" title="样本"></a>样本</h3></li></ul></li><li>样本是指数据的特定实例：<ul><li>有标签样本</li><li>无标签样本</li><li><ul><li><strong>我们使用有标签样本来训练模型。</strong>在垃圾邮件检测器中，有标签样本是用户明确标记为“垃圾邮件”或“非垃圾邮件”的各个电子邮件。</li><li><strong>在使用有标签样本训练模型之后，我们会使用该模型预测无标签样本的标签。</strong>在垃圾邮件检测器示例中，无标签样本是用户尚未添加标签的新电子邮件。</li></ul></li></ul></li><li><ul><li>labeled examples: {features, label}: (x, y) 有特征和标签<ul><li>例如房子的大小，房型，房间数；而房价则可称为标签；</li></ul></li><li>unlabeled examples: {features, ?}: (x, ?)  有特征而无标签<ul><li>房子大小房型知道，房价未知</li></ul></li></ul></li><li>个人理解：标签是更为主观的判断<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3></li><li>模型定义了特征与标签之间的关系。</li><li><strong>训练</strong>是指创建或学习模型。也就是说，向模型展示有标签样本，让模型逐渐学习特征与标签之间的关系。</li><li><strong>推断</strong>是指将训练后的模型应用于无标签样本。也就是说，使用经过训练的模型做出有用的预测 (y’)。例如，在推断期间，您可以针对新的无标签样本预测 medianHouseValue.<em>（即由房型，大小，房间数推断价格）</em><h3 id="回归与分类"><a href="#回归与分类" class="headerlink" title="回归与分类"></a>回归与分类</h3></li><li>回归模型可预测连续值。例如，回归模型做出的预测可回答如下问题：<ul><li>加利福尼亚州一栋房产的价值是多少？</li><li>用户点击此广告的概率是多少？</li></ul></li><li>分类模型可预测离散值。例如，分类模型做出的预测可回答如下问题：<ul><li>某个指定电子邮件是垃圾邮件还是非垃圾邮件？</li><li>这是一张狗、猫还是仓鼠图片？<h2 id="深入了解machin-learning"><a href="#深入了解machin-learning" class="headerlink" title="深入了解machin learning"></a>深入了解machin learning</h2><h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3></li></ul></li><li><img src="https://developers.google.cn/machine-learning/crash-course/images/CricketLine.svg" srcset="undefined" alt="线性回归图"></li><li>即可简单的写出模型方程式<h3 id="训练与损失"><a href="#训练与损失" class="headerlink" title="训练与损失"></a>训练与损失</h3></li><li><img src="https://developers.google.cn/machine-learning/crash-course/images/LossSideBySide.png" srcset="undefined" alt="1"></li><li>红色箭头表示损失,蓝线表示预测</li><li><strong>左侧模型的损失较大；右侧模型的损失较小</strong><h4 id="平方损失：一种常见的损失函数"><a href="#平方损失：一种常见的损失函数" class="headerlink" title="平方损失：一种常见的损失函数"></a>平方损失：一种常见的损失函数</h4>  = the square of the difference between the label and the prediction<br>  = (observation - prediction(x))2<br>  = (y - y’)2<h4 id="均方误差-MSE"><a href="#均方误差-MSE" class="headerlink" title="均方误差 (MSE)"></a>均方误差 (MSE)</h4></li><li>指的是每个样本的平均平方损失。要计算 MSE，请求出各个样本的所有平方损失之和，然后除以样本数量。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>机器学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>机器学习</tag>
+      
+      <tag>machine learning，python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>基于MATLAB的语音信号识别</title>
     <link href="undefined2019/12/02/%E5%9F%BA%E4%BA%8EMATLAB%E7%9A%84%E8%AF%AD%E9%9F%B3%E4%BF%A1%E5%8F%B7%E8%AF%86%E5%88%AB/"/>
     <url>2019/12/02/%E5%9F%BA%E4%BA%8EMATLAB%E7%9A%84%E8%AF%AD%E9%9F%B3%E4%BF%A1%E5%8F%B7%E8%AF%86%E5%88%AB/</url>
