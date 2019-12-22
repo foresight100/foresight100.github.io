@@ -4,6 +4,41 @@
   
   
   <entry>
+    <title>学生通讯录管理系统（一次c语言的初步探索运用）</title>
+    <link href="undefined2019/12/22/%E5%AD%A6%E7%94%9F%E9%80%9A%E8%AE%AF%E5%BD%95%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%E6%AC%A1c%E8%AF%AD%E8%A8%80%E7%9A%84%E5%88%9D%E6%AD%A5%E6%8E%A2%E7%B4%A2%E8%BF%90%E7%94%A8%EF%BC%89/"/>
+    <url>2019/12/22/%E5%AD%A6%E7%94%9F%E9%80%9A%E8%AE%AF%E5%BD%95%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%E6%AC%A1c%E8%AF%AD%E8%A8%80%E7%9A%84%E5%88%9D%E6%AD%A5%E6%8E%A2%E7%B4%A2%E8%BF%90%E7%94%A8%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p>纪念人生第一次手撸2000行代码 (o^^o)♪</p><h1 id="学生通讯录管理系统"><a href="#学生通讯录管理系统" class="headerlink" title="学生通讯录管理系统"></a>学生通讯录管理系统</h1><ul><li><strong>c语言课程设计</strong>  <h2 id="HUST-EIC"><a href="#HUST-EIC" class="headerlink" title="HUST EIC"></a>HUST EIC</h2></li></ul><h2 id="功能概述："><a href="#功能概述：" class="headerlink" title="功能概述："></a>功能概述：</h2><p>这是基于c语言的学生通讯录管理系统，包括以下功能：</p><ul><li><strong>导入csv等二进制格式文件</strong><ul><li>检测是否重复导入：若重复导入，提醒用户是否覆盖，或者回到主界面进行添加功能</li><li>检测文件是否存在：若存在则导入，若不存在会提示“NOT FOUND”重新导入</li></ul></li><li><strong>浏览所有学生信息</strong><ul><li>一键打印所有同学的所有信息</li></ul></li><li><strong>统计与查找所有学生信息</strong><ul><li>支持按各类特征查找，如：只查找名字或只查找学院，所有查找都支持模糊查找，如只输入姓氏，或只输入学院名称的几个字</li><li>支持关键字查找：输入关键字查找所有特征（即，把名字，学院，email等与关键字一一对比）</li><li>所有查找结果都返回查找的结果的个数</li><li>所有查找都支持模糊查找</li></ul></li><li><strong>排序</strong><ul><li>排序采用设标签法</li><li>设标签后，交换采用数据域的交换，而非结点的交换，有改进空间</li></ul></li><li><strong>删除学生信息</strong><ul><li>删除学生信息就是将该结点的上一级指针指向下一级，再free该结点</li><li>有避免误删的功能，即多次确定，且打印信息</li></ul></li><li><strong>添加新的学生信息</strong><ul><li>设计了两种添加学生信息的方式：<ul><li>用户手动添加</li><li>通过读取文件添加</li></ul></li><li>两种添加方式都直接添加在末尾</li></ul></li><li><strong>修改学生信息</strong><ul><li>根据学号的唯一性，通过学号找到学生本人然后进行修改。</li><li>同样具有容错性，例如：若查找不到学生，则打印 NOTFOUND！！</li></ul></li><li><strong>导出表格</strong><ul><li>输入导出表格的路径，若存在同名同路径文件，则覆盖，若不存在，则创建   </li></ul></li><li><strong>通知</strong><ul><li>base64加密和soket部分代码为网上demo，有些库函数不知osx和windows能否兼容<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><pre><code class="lang-mermaid">graph LRA[主界面] --&gt; B[导入文件]A[主界面] --&gt; C[排序]A[主界面] --&gt; D[浏览所有]A[主界面] --&gt; E[统计和查找]A[主界面] --&gt; F[添加新的学生信息]A[主界面] --&gt; G[修改学生信息]A[主界面] --&gt; H[删除学生信息]A[主界面] --&gt; I[导出]A[主界面] --&gt; J[通知学生]A[主界面] --&gt; K(退出程序)B--&gt;输入文件路径C--&gt;按姓名字典顺序排序C--&gt;按学号排序D--&gt;列表浏览所有学生信息E--&gt;5(统计与查找)5--&gt;按学号查找5--&gt;按名字查找5--&gt;按学院查找5--&gt;按地址查找5--&gt;按电话查找5--&gt;按邮箱查找F--&gt;手动添加F--&gt;文件添加G--&gt;查找--&gt;选择修改特征--&gt;键入修改后值--&gt;修改成功H--&gt;查找删除学生信息--&gt;1{确定删除}--&gt;删除I--&gt;选择输出路径--&gt;导出成功J--&gt;输入学生邮箱--&gt;send</code></pre><h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h2></li></ul></li><li><strong>结构采用一个功能一个模块（子函数），实现模块间的相互独立</strong></li><li><strong>存储数据的链表的表头是全局链表，可以不用传递参数便随时调取</strong></li><li><strong>进入功能后可以随时退出，回到主界面</strong></li><li><strong>所有模块都具有容错性</strong></li><li><strong>代码除「通知」模块的一部分，其他为纯手写</strong><h2 id="不足和改进空间"><a href="#不足和改进空间" class="headerlink" title="不足和改进空间"></a>不足和改进空间</h2></li><li>在统计和查找模块，可以利用定义函数来减少代码行数，但时间不足，暂来不及改变</li><li>结构还不够简洁</li><li>对学生信息的修改功能上，没有批量修改</li><li>对学生的信息统计能统计数目，暂不能有更多的统计功能</li><li>所有数据仅支持英文，中文在terminal中测试为乱码</li><li>发送通知的功能还需继续学习更多有关通信和加密的知识<h2 id="总结收获"><a href="#总结收获" class="headerlink" title="总结收获"></a>总结收获</h2></li><li>学会了链表的增删查改</li><li>学会了用c语言读写文件</li><li>对数组、指针、结构体的运用能力更近了一层</li><li>debug能力更强</li><li>初步接触套接字</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>c语言</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>c++</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>指针</tag>
+      
+      <tag>c语言</tag>
+      
+      <tag>课程设计</tag>
+      
+      <tag>链表</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>c语言指针的应用</title>
     <link href="undefined2019/12/17/c%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88%E7%9A%84%E5%BA%94%E7%94%A8/"/>
     <url>2019/12/17/c%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88%E7%9A%84%E5%BA%94%E7%94%A8/</url>
@@ -43,13 +78,13 @@
     
     <tags>
       
+      <tag>算法</tag>
+      
       <tag>机器学习</tag>
       
       <tag>machine learning</tag>
       
       <tag>python</tag>
-      
-      <tag>算法</tag>
       
     </tags>
     
@@ -74,13 +109,13 @@
     
     <tags>
       
+      <tag>算法</tag>
+      
       <tag>机器学习</tag>
       
       <tag>machine learning</tag>
       
       <tag>python</tag>
-      
-      <tag>算法</tag>
       
       <tag>TensorFlow</tag>
       
@@ -107,13 +142,13 @@
     
     <tags>
       
+      <tag>算法</tag>
+      
       <tag>机器学习</tag>
       
       <tag>machine learning</tag>
       
       <tag>python</tag>
-      
-      <tag>算法</tag>
       
     </tags>
     
@@ -191,18 +226,18 @@
     
     <categories>
       
-      <category>c++</category>
+      <category>c语言</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>算法</tag>
-      
       <tag>c++</tag>
       
       <tag>c</tag>
+      
+      <tag>算法</tag>
       
     </tags>
     

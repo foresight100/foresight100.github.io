@@ -15,7 +15,7 @@
   <meta name="description" content="Foresight&#39;s blog wangqiuchen 王秋辰">
   <meta name="author" content="Wang Qiuchen">
   <meta name="keywords" content="blog,life,coding">
-  <title>学习笔记：Machine Learning(3) ~ Foresight&#39;blog</title>
+  <title>分类 - c语言 ~ Foresight&#39;blog</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.2/css/all.min.css"  >
 <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"  >
@@ -36,7 +36,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -107,35 +107,6 @@
             </span>
 
             
-              <br>
-              
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  2019/12/06,星期五  20:56 
-                </p>
-              
-
-              <p>
-                
-                  
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    505 字
-                  </span>&nbsp;
-                
-
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>&nbsp;
-                
-              </p>
-            
           </div>
 
           
@@ -146,118 +117,39 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 2 篇文章</p>
+  <hr>
+  
+    
       
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            <ul>
-<li>使用 TensorFlow 的起始步骤 (First Steps with TensorFlow)</li>
-<li>泛化 (Generalization)</li>
-<li>练集和测试集 (Training and Test Sets)<a id="more"></a>
-<h1 id="TensorFlow"><a href="#TensorFlow" class="headerlink" title="TensorFlow"></a>TensorFlow</h1><h2 id="TensorFlow-工具包"><a href="#TensorFlow-工具包" class="headerlink" title="TensorFlow 工具包"></a>TensorFlow 工具包</h2></li>
-<li><p><img src="https://developers.google.cn/machine-learning/crash-course/images/TFHierarchy.svg" srcset="undefined" alt></p>
-<h2 id="tf-estimator-API"><a href="#tf-estimator-API" class="headerlink" title="tf.estimator API"></a>tf.estimator API</h2><p>以下是在 tf.estimator 中实现的线性回归程序的格式：</p>
-<p>  import tensorflow as tf</p>
-<h1 id="Set-up-a-linear-classifier"><a href="#Set-up-a-linear-classifier" class="headerlink" title="Set up a linear classifier."></a>Set up a linear classifier.</h1><p>  classifier = tf.estimator.LinearClassifier()</p>
-<h1 id="Train-the-model-on-some-example-data"><a href="#Train-the-model-on-some-example-data" class="headerlink" title="Train the model on some example data."></a>Train the model on some example data.</h1><p>  classifier.train(input_fn=train_input_fn, steps=2000)</p>
-<h1 id="Use-it-to-predict"><a href="#Use-it-to-predict" class="headerlink" title="Use it to predict."></a>Use it to predict.</h1><p>  predictions = classifier.predict(input_fn=predict_input_fn)</p>
-<h1 id="泛化-Generalization"><a href="#泛化-Generalization" class="headerlink" title="泛化 (Generalization)"></a>泛化 (Generalization)</h1></li>
-<li>泛化是指模型很好地拟合以前未见过的新数据（从用于创建该模型的同一分布中抽取）的能力。<h2 id="过拟合的风险"><a href="#过拟合的风险" class="headerlink" title="过拟合的风险"></a>过拟合的风险</h2></li>
-<li><ul>
-<li><img src="https://developers.google.cn/machine-learning/crash-course/images/GeneralizationB.png" srcset="undefined" alt></li>
-<li>拟合</li>
-<li><img src="https://developers.google.cn/machine-learning/crash-course/images/GeneralizationC.png" srcset="undefined" alt></li>
-<li>对比</li>
-<li>损失很低，但仍然是糟糕的模型</li>
-<li>过拟合是由于模型的复杂程度超出所需程度而造成的。机器学习的基本冲突是适当拟合我们的数据，但也要尽可能简单地拟合数据。<h2 id="奥卡姆剃刀定律"><a href="#奥卡姆剃刀定律" class="headerlink" title="奥卡姆剃刀定律"></a>奥卡姆剃刀定律</h2></li>
-</ul>
-</li>
-<li><ul>
-<li>奥卡姆的威廉是 14 世纪一位崇尚简单的修士和哲学家。他认为科学家应该优先采用更简单（而非更复杂）的公式或理论。</li>
-<li>奥卡姆剃刀定律在机器学习方面的运用如下：<strong>机器学习模型越简单，良好的实证结果就越有可能不仅仅基于样本的特性。</strong></li>
-<li><font color="red"> **如无必要，勿增实体** </font></li>
-</ul>
-</li>
-<li>统计化描述模型根据以下因素泛化到新数据的能力：<ul>
-<li>模型的复杂程度</li>
-<li>模型在处理训练数据方面的表现</li>
-</ul>
-</li>
-<li>据数据集构建模型，如何获得以前未见过的数据呢？一种方法是将您的数据集分成两个子集：<ul>
-<li>训练集 - 用于训练模型的子集</li>
-<li>测试集 - 用于测试模型的子集<h1 id="训练集和测试集-Training-and-Test-Sets"><a href="#训练集和测试集-Training-and-Test-Sets" class="headerlink" title="训练集和测试集 (Training and Test Sets)"></a>训练集和测试集 (Training and Test Sets)</h1><h2 id="拆分单个数据集"><a href="#拆分单个数据集" class="headerlink" title="拆分单个数据集"></a>拆分单个数据集</h2><img src="https://developers.google.cn/machine-learning/crash-course/images/PartitionTwoSets.svg" srcset="undefined" alt><br><img src="https://developers.google.cn/machine-learning/crash-course/images/TrainingDataVsTestData.svg" srcset="undefined" alt></li>
-</ul>
-</li>
-<li>切勿训练测试数据</li>
-<li>测试集应满足：<ul>
-<li>能代表整个数据集。换言之，挑选的测试集的特征应该与训练集的特征相同。</li>
-<li>规模足够大，可产生具有统计意义的结果</li>
-</ul>
-</li>
-</ul>
-
-            <hr>
-          </div>
-          <br>
-          <div>
-            <p>
-            
-              <span>
-                <i class="iconfont icon-inbox"></i>
-                
-                  <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>
-                  &nbsp;
-                
-              </span>&nbsp;&nbsp;
-            
-            
-              <span>
-                <i class="iconfont icon-tag"></i>
-                
-                  <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95">算法</a>
-                
-                  <a class="hover-with-bg" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>
-                
-                  <a class="hover-with-bg" href="/tags/machine%20learning">machine learning</a>
-                
-                  <a class="hover-with-bg" href="/tags/python">python</a>
-                
-                  <a class="hover-with-bg" href="/tags/TensorFlow">TensorFlow</a>
-                
-              </span>
-            
-            </p>
-            
+      <p class="h5">2019</p>
+    
+    <a href="/2019/12/22/%E5%AD%A6%E7%94%9F%E9%80%9A%E8%AE%AF%E5%BD%95%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%E6%AC%A1c%E8%AF%AD%E8%A8%80%E7%9A%84%E5%88%9D%E6%AD%A5%E6%8E%A2%E7%B4%A2%E8%BF%90%E7%94%A8%EF%BC%89/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">学生通讯录管理系统（一次c语言的初步探索运用）</span>
+      <span style="float: right;">12-22</span>
+    </a>
+  
+    
+    <a href="/2019/11/30/c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">c语言中的排序方法</span>
+      <span style="float: right;">11-30</span>
+    </a>
+  
+</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
-    <div id="tocbot"></div>
-  </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- custom -->
-
-
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
-    
-  </div>
-</div>
-
     
   </main>
 
@@ -333,11 +225,6 @@
 
 
 
-  
-    <script src="https://cdn.staticfile.org/tocbot/4.8.0/tocbot.min.js" ></script>
-  
-  <script src="/js/post.js" ></script>
-
 
 
   <script src="https://cdn.staticfile.org/smooth-scroll/16.1.0/smooth-scroll.min.js" ></script>
@@ -378,7 +265,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "学习笔记：Machine Learning(3)&nbsp;",
+        "分类 - c语言&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,
