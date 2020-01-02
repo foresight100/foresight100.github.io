@@ -12,6 +12,7 @@
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
   <meta name="description" content="Foresight&#39;s blog wangqiuchen 王秋辰">
   <meta name="author" content="Wang Qiuchen">
   <meta name="keywords" content="blog,life,coding">
@@ -40,7 +41,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Foresight&#39;blog</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Foresight'blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -54,10 +55,14 @@
         
           
           
+          
+          
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
           </li>
         
+          
+          
           
           
           <li class="nav-item">
@@ -66,16 +71,22 @@
         
           
           
+          
+          
           <li class="nav-item">
             <a class="nav-link" href="/categories/">分类</a>
           </li>
         
           
           
+          
+          
           <li class="nav-item">
             <a class="nav-link" href="/tags/">标签</a>
           </li>
         
+          
+          
           
           
           <li class="nav-item">
@@ -91,8 +102,6 @@
       </ul>
     </div>
   </div>
-
-
 </nav>
 
     <div class="view intro-2" id="background"
@@ -160,7 +169,7 @@
 <li>泛化 (Generalization)</li>
 <li>练集和测试集 (Training and Test Sets)<a id="more"></a>
 <h1 id="TensorFlow"><a href="#TensorFlow" class="headerlink" title="TensorFlow"></a>TensorFlow</h1><h2 id="TensorFlow-工具包"><a href="#TensorFlow-工具包" class="headerlink" title="TensorFlow 工具包"></a>TensorFlow 工具包</h2></li>
-<li><p><img src="https://developers.google.cn/machine-learning/crash-course/images/TFHierarchy.svg" srcset="undefined" alt></p>
+<li><p><img src="https://developers.google.cn/machine-learning/crash-course/images/TFHierarchy.svg" srcset="/img/loading.gif" alt></p>
 <h2 id="tf-estimator-API"><a href="#tf-estimator-API" class="headerlink" title="tf.estimator API"></a>tf.estimator API</h2><p>以下是在 tf.estimator 中实现的线性回归程序的格式：</p>
 <p>  import tensorflow as tf</p>
 <h1 id="Set-up-a-linear-classifier"><a href="#Set-up-a-linear-classifier" class="headerlink" title="Set up a linear classifier."></a>Set up a linear classifier.</h1><p>  classifier = tf.estimator.LinearClassifier()</p>
@@ -169,9 +178,9 @@
 <h1 id="泛化-Generalization"><a href="#泛化-Generalization" class="headerlink" title="泛化 (Generalization)"></a>泛化 (Generalization)</h1></li>
 <li>泛化是指模型很好地拟合以前未见过的新数据（从用于创建该模型的同一分布中抽取）的能力。<h2 id="过拟合的风险"><a href="#过拟合的风险" class="headerlink" title="过拟合的风险"></a>过拟合的风险</h2></li>
 <li><ul>
-<li><img src="https://developers.google.cn/machine-learning/crash-course/images/GeneralizationB.png" srcset="undefined" alt></li>
+<li><img src="https://developers.google.cn/machine-learning/crash-course/images/GeneralizationB.png" srcset="/img/loading.gif" alt></li>
 <li>拟合</li>
-<li><img src="https://developers.google.cn/machine-learning/crash-course/images/GeneralizationC.png" srcset="undefined" alt></li>
+<li><img src="https://developers.google.cn/machine-learning/crash-course/images/GeneralizationC.png" srcset="/img/loading.gif" alt></li>
 <li>对比</li>
 <li>损失很低，但仍然是糟糕的模型</li>
 <li>过拟合是由于模型的复杂程度超出所需程度而造成的。机器学习的基本冲突是适当拟合我们的数据，但也要尽可能简单地拟合数据。<h2 id="奥卡姆剃刀定律"><a href="#奥卡姆剃刀定律" class="headerlink" title="奥卡姆剃刀定律"></a>奥卡姆剃刀定律</h2></li>
@@ -190,7 +199,7 @@
 </li>
 <li>据数据集构建模型，如何获得以前未见过的数据呢？一种方法是将您的数据集分成两个子集：<ul>
 <li>训练集 - 用于训练模型的子集</li>
-<li>测试集 - 用于测试模型的子集<h1 id="训练集和测试集-Training-and-Test-Sets"><a href="#训练集和测试集-Training-and-Test-Sets" class="headerlink" title="训练集和测试集 (Training and Test Sets)"></a>训练集和测试集 (Training and Test Sets)</h1><h2 id="拆分单个数据集"><a href="#拆分单个数据集" class="headerlink" title="拆分单个数据集"></a>拆分单个数据集</h2><img src="https://developers.google.cn/machine-learning/crash-course/images/PartitionTwoSets.svg" srcset="undefined" alt><br><img src="https://developers.google.cn/machine-learning/crash-course/images/TrainingDataVsTestData.svg" srcset="undefined" alt></li>
+<li>测试集 - 用于测试模型的子集<h1 id="训练集和测试集-Training-and-Test-Sets"><a href="#训练集和测试集-Training-and-Test-Sets" class="headerlink" title="训练集和测试集 (Training and Test Sets)"></a>训练集和测试集 (Training and Test Sets)</h1><h2 id="拆分单个数据集"><a href="#拆分单个数据集" class="headerlink" title="拆分单个数据集"></a>拆分单个数据集</h2><img src="https://developers.google.cn/machine-learning/crash-course/images/PartitionTwoSets.svg" srcset="/img/loading.gif" alt><br><img src="https://developers.google.cn/machine-learning/crash-course/images/TrainingDataVsTestData.svg" srcset="/img/loading.gif" alt></li>
 </ul>
 </li>
 <li>切勿训练测试数据</li>
@@ -293,10 +302,9 @@
 
   <footer class="mt-5">
   <div class="text-center py-3">
-
-    
+    <b>Foresight</b></a>
     <i class="iconfont icon-love"></i>
-    
+    <b>Welcome</b></a>
     <br>
 
     
@@ -316,6 +324,10 @@
 
 
 
+    
+
+
+    <!-- cnzz Analytics icon -->
     
 
   </div>
@@ -358,8 +370,8 @@
 
   
 
+  <!-- cnzz Analytics -->
   
-
 
 
 
@@ -433,6 +445,10 @@
       }
     );
   </script>
+
+
+
+
 
 
 

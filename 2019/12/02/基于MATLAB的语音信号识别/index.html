@@ -12,6 +12,7 @@
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
   <meta name="description" content="Foresight&#39;s blog wangqiuchen 王秋辰">
   <meta name="author" content="Wang Qiuchen">
   <meta name="keywords" content="blog,life,coding">
@@ -40,7 +41,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Foresight&#39;blog</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Foresight'blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -54,10 +55,14 @@
         
           
           
+          
+          
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
           </li>
         
+          
+          
           
           
           <li class="nav-item">
@@ -66,16 +71,22 @@
         
           
           
+          
+          
           <li class="nav-item">
             <a class="nav-link" href="/categories/">分类</a>
           </li>
         
           
           
+          
+          
           <li class="nav-item">
             <a class="nav-link" href="/tags/">标签</a>
           </li>
         
+          
+          
           
           
           <li class="nav-item">
@@ -91,8 +102,6 @@
       </ul>
     </div>
   </div>
-
-
 </nav>
 
     <div class="view intro-2" id="background"
@@ -172,7 +181,7 @@
 </li>
 </ul>
 <h1 id="MAIN"><a href="#MAIN" class="headerlink" title="MAIN"></a>MAIN</h1><ul>
-<li>语音特征MFCC提取过程<br><img src="http://static.oschina.net/uploads/space/2014/0115/164958_fSdw_852488.jpg" srcset="undefined" alt="流程"></li>
+<li>语音特征MFCC提取过程<br><img src="http://static.oschina.net/uploads/space/2014/0115/164958_fSdw_852488.jpg" srcset="/img/loading.gif" alt="流程"></li>
 <li>在语音识别和话者识别方面，最常用到的语音特征就是梅尔倒谱系数（Mel-scaleFrequency Cepstral Coefficients，简称MFCC）。</li>
 <li>人耳对不同频率的声波有不同的听觉敏感度。从200Hz到5000Hz的语音信号对语音的清晰度影响对大。两个响度不等的声音作用于人耳时，则响度<strong>较高的频率成分的存在会影响到对响度较低</strong>的频率成分的感受，使其变得不易察觉，这种现象称为掩蔽效应。</li>
 <li>由于频率较低的声音在内耳蜗基底膜上行波传递的距离大于频率较高的声音，故一般来说，低音容易掩蔽高音，而高音掩蔽低音较困难。在低频处的声音掩蔽的临界带宽较高频要小。</li>
@@ -205,7 +214,7 @@
 </ul>
 </li>
 <li>信号在时域上的变换通常很难看出信号的特性，所以通常将它转换为频域上的能量分布来观察。对预处理的每帧进行离散傅立叶变换得到其频谱，再取模的平方作为离散功率<br>谱S(n)</li>
-<li><img src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=c9f5c05add2a6059461de948495d5ffe/94cad1c8a786c917e7c47eaac33d70cf3ac75759.jpg" srcset="undefined" alt="离散功率谱"></li>
+<li><img src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=c9f5c05add2a6059461de948495d5ffe/94cad1c8a786c917e7c47eaac33d70cf3ac75759.jpg" srcset="/img/loading.gif" alt="离散功率谱"></li>
 <li><strong><font color="red">功率谱表示了信号功率随着频率的变化关系</font></strong><h2 id="将功率谱通过滤波器组"><a href="#将功率谱通过滤波器组" class="headerlink" title="将功率谱通过滤波器组"></a>将功率谱通过滤波器组</h2></li>
 <li>MFCC考虑到了人类的听觉特征，先将线性频谱映射到基于听觉感知的Mel非线性频谱中，然后转换到倒谱上。<h2 id="取对数后做离散余弦变换"><a href="#取对数后做离散余弦变换" class="headerlink" title="取对数后做离散余弦变换"></a>取对数后做离散余弦变换</h2></li>
 <li>在频谱图中，缓变信号和快变信号以乘积的方式耦合，所以取对数，使缓变信号和快变信号以相加的方式耦合。再取傅里叶逆变换，这样就能够将乘积变加法后的高频信号和低频信号的耦合分开来分析了<h2 id="动态差分系数的提取"><a href="#动态差分系数的提取" class="headerlink" title="动态差分系数的提取"></a>动态差分系数的提取</h2></li>
@@ -308,10 +317,9 @@
 
   <footer class="mt-5">
   <div class="text-center py-3">
-
-    
+    <b>Foresight</b></a>
     <i class="iconfont icon-love"></i>
-    
+    <b>Welcome</b></a>
     <br>
 
     
@@ -331,6 +339,10 @@
 
 
 
+    
+
+
+    <!-- cnzz Analytics icon -->
     
 
   </div>
@@ -373,8 +385,8 @@
 
   
 
+  <!-- cnzz Analytics -->
   
-
 
 
 
@@ -448,6 +460,10 @@
       }
     );
   </script>
+
+
+
+
 
 
 

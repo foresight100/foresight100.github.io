@@ -57,6 +57,9 @@ body a:hover {
   height: 0.2em;
   margin: 2rem 0;
 }
+.markdown-body strong {
+  font-weight: bold;
+}
 .list-group-item {
   border: 0;
 }
@@ -254,6 +257,23 @@ body a:hover {
   z-index: 99;
   display: none;
 }
+a.police-beian {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+a.police-beian img {
+  margin: 0 3px;
+  width: 18px;
+  height: 18px;
+}
+@media (max-width: 320px) {
+  a.police-beian span.police-beian-sep {
+    display: none;
+  }
+}
 @-moz-keyframes scroll-down {
   0% {
     opacity: 0.8;
@@ -444,14 +464,27 @@ h6::before {
 }
 #toc {
   padding: 3rem 0 0 0;
+  height: 80%;
+}
+#tocbot {
+  max-height: 100%;
+  overflow-y: auto;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
 }
 #tocbot ol {
   list-style: none;
   padding-inline-start: 1rem;
 }
+#tocbot::-webkit-scrollbar {
+  display: none;
+}
 .tocbot-list ol {
   list-style: none;
   padding-left: 1rem;
+}
+.tocbot-list a {
+  font-size: 15px;
 }
 .tocbot-link {
   color: #3c4858;
