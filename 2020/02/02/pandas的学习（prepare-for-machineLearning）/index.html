@@ -16,7 +16,7 @@
   <meta name="description" content="Foresight&#39;s blog wangqiuchen 王秋辰">
   <meta name="author" content="Wang Qiuchen">
   <meta name="keywords" content="blog,life,coding">
-  <title>标签 - 机器学习 ~ Foresight&#39;s blog</title>
+  <title>pandas的学习（prepare for machineLearning） ~ Foresight&#39;s blog</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.2/css/all.min.css"  >
 <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"  >
@@ -37,7 +37,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -116,6 +116,35 @@
             </span>
 
             
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  2020/02/02,星期日  03:15 
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    479 字
+                  </span>&nbsp;
+                
+
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
           </div>
 
           
@@ -126,63 +155,117 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><ul>
+<li>安装tensorFlow和jupyter断断续续折腾了尽一个月，一开始一直报错原来是因为虚拟环境初始化为了python2.7（并不是最初认为的tensorFlow无3.7版本），tensorflow2.0对于python3.7已经支持。原来最好的安装方法是：python3.7虚拟环境+国内镜像tensorFlow+pip安装jupyter_notebook。</li>
+<li>anaconda-Navigator的GUI界面安装也是一个不错的选择，对于import python包确实方便；缺点就是不知如何改为国内源，速度不快。<h2 id="some-notes"><a href="#some-notes" class="headerlink" title="some notes"></a>some notes</h2><h3 id="lambda"><a href="#lambda" class="headerlink" title="lambda:"></a>lambda:</h3></li>
+<li><ul>
+<li>1）def创建的方法是有名称的，而lambda没有。</li>
+<li>2）lambda会返回一个函数对象，但这个对象不会赋给一个标识符，而def则会把函数对象赋值给一个变量（函数名）。</li>
+<li>3）lambda只是一个表达式，而def则是一个语句。</li>
+<li>4）lambda表达式” : “后面，只能有一个表达式，def则可以有多个。</li>
+<li>5）像if或for或print等语句不能用于lambda中，def可以。</li>
+<li>6）lambda一般用来定义简单的函数，而def可以定义复杂的函数。</li>
+<li><p>7）lambda函数不能共享给别的程序调用，def可以。</p>
+<pre><code>lambda [arg1 [, agr2,.....argn]] : expression
+1、单个参数的：
+&gt;&gt;&gt; g = lambda x : x ** 2
+&gt;&gt;&gt; print g(3)
+9
+2、多个参数的：
+&gt;&gt;&gt; g = lambda x, y, z : (x + y) ** z
+&gt;&gt;&gt; print g(1,2,2)
+9
+</code></pre></li>
+<li>lambda表达式会返回一个函数对象，如果没有变量接受这个返回值的话，它很快就会被丢弃。也正是由于lambda只是一个表达式，所以它可以直接作为list和dict的成员。<pre><code>&gt;&gt;&gt; list_a = [lambda a: a**3, lambda b: b**3]
+&gt;&gt;&gt; list_a[0]
+&lt;function &lt;lambda&gt; at 0x0259B8B0&gt;
+&gt;&gt;&gt; g = list_a[0]
+&gt;&gt;&gt; g(2)
+8
+</code></pre></li>
+<li><p>上块存疑</p>
+<h3 id="map："><a href="#map：" class="headerlink" title="map："></a>map：</h3><pre><code>map(fun, iter)
+</code></pre><pre><code># Return double of n 
+def addition(n): 
+    return n + n 
+
+# We double all numbers using map() 
+numbers = (1, 2, 3, 4) 
+result = map(addition, numbers) 
+print(list(result)) 
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<p>output:</p>
+<pre><code>    {2, 4, 6, 8}
+</code></pre><h3 id><a href="#" class="headerlink" title=" "></a> </h3>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
                 
-
-<div class="list-group">
-<!--  <p class="h4">共计 5 篇文章</p>-->
-  <hr>
-  
-    
-      
-      <p class="h5">2020</p>
-    
-    <a href="/2020/02/02/pandas%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88prepare-for-machineLearning%EF%BC%89/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">pandas的学习（prepare for machineLearning）</span>
-      <span style="float: right;">02-02</span>
-    </a>
-  
-    
-      
-      <p class="h5">2019</p>
-    
-    <a href="/2019/12/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMachine-Learning-4/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">学习笔记：Machine Learning(4)</span>
-      <span style="float: right;">12-06</span>
-    </a>
-  
-    
-    <a href="/2019/12/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMachine-Learning-3/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">学习笔记：Machine Learning(3)</span>
-      <span style="float: right;">12-06</span>
-    </a>
-  
-    
-    <a href="/2019/12/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMachine-Learning-2/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">学习笔记：Machine Learning(2)</span>
-      <span style="float: right;">12-05</span>
-    </a>
-  
-    
-    <a href="/2019/12/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMachine-Learning-1/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">学习笔记：Machine Learning(1)</span>
-      <span style="float: right;">12-04</span>
-    </a>
-  
-</div>
-
-
-
-              </div>
-            </div>
+                  <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>
+                
+                  <a class="hover-with-bg" href="/tags/machine%20learning">machine learning</a>
+                
+                  <a class="hover-with-bg" href="/tags/pandas">pandas</a>
+                
+                  <a class="hover-with-bg" href="/tags/tensorFlow">tensorFlow</a>
+                
+                  <a class="hover-with-bg" href="/tags/python">python</a>
+                
+              </span>
+            
+            </p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -261,6 +344,11 @@
 
 
 
+  
+    <script src="https://cdn.staticfile.org/tocbot/4.8.0/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="https://cdn.staticfile.org/smooth-scroll/16.1.0/smooth-scroll.min.js" ></script>
@@ -314,7 +402,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签 - 机器学习&nbsp;",
+        "pandas的学习（prepare for machineLearning）&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 140,

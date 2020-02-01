@@ -142,6 +142,58 @@
   <div class="row mb-4 mx-auto">
     
     
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/02/02/pandas%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88prepare-for-machineLearning%EF%BC%89/">
+        <p class="h4 index-header">pandas的学习（prepare for machineLearning）</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">install
+安装tensorFlow和jupyter断断续续折腾了尽一个月，一开始一直报错原来是因为虚拟环境初始化为了python2.7（并不是最初认为的tensorFlow无3.7版本），tensorflow2.0对于python3.7已经支持。原来最好的安装方法是：python3.7虚拟环境+国内镜像tensorFlow+pip安装jupyter_notebook。
+anaconda-Navigator的GUI界面安装也是一个不错的选择，对于import python包确实方便；缺点就是不知如何改为国内源，速度不快。some noteslambda:
+
+1）def创建的方法是有名称的，而lambda没有。
+2）lambda会返回一个函数对象，但这个对象不会赋给一个标识符，而def则会把函数对象赋值给一个变量（函数名）。
+3）lambda只是一个表达式，而def则是一个语句。
+4）lambda表达式” : “后面，只能有一个表达式，def则可以有多个。
+5）像if或for或print等语句不能用于lambda中，def可以。
+6）lambda一般用来定义简单的函数，而def可以定</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-02-02&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>&nbsp;
+          
+            <a href="/tags/machine%20learning">machine learning</a>&nbsp;
+          
+            <a href="/tags/pandas">pandas</a>&nbsp;
+          
+            <a href="/tags/tensorFlow">tensorFlow</a>&nbsp;
+          
+            <a href="/tags/python">python</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
       <div class="col-12 col-md-4 m-auto">
         <a href="/2019/12/31/%E5%9B%A2%E9%98%9F%E5%B9%B4%E9%89%B4-%E6%88%91%E7%9A%842019/" target="_self">
           <img src="https://i.loli.net/2020/01/19/wo16sulR4HkFGq9.jpg" srcset="/img/loading.gif" alt="团队年鉴-我的2019" class="img-fluid rounded z-depth-3 index-thumbnails">
@@ -575,32 +627,19 @@
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/11/30/hello-world/">
-        <p class="h4 index-header">Hello World</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.David Levithan—Wide Awake</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-30&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
 
 
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-double-right"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 

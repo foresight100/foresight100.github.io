@@ -16,7 +16,7 @@
   <meta name="description" content="Foresight&#39;s blog wangqiuchen 王秋辰">
   <meta name="author" content="Wang Qiuchen">
   <meta name="keywords" content="blog,life,coding">
-  <title>标签 - 机器学习 ~ Foresight&#39;s blog</title>
+  <title>Foresight&#39;s blog</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.2/css/all.min.css"  >
 <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"  >
@@ -37,7 +37,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -119,6 +119,10 @@
           </div>
 
           
+            <div class="scroll-down-bar">
+              <i class="fas fa-angle-down scroll-down-arrow"></i>
+            </div>
+          
         </div>
       </div>
     </div>
@@ -134,47 +138,45 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-<!--  <p class="h4">共计 5 篇文章</p>-->
-  <hr>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/30/hello-world/">
+        <p class="h4 index-header">Hello World</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.David Levithan—Wide Awake</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-30&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
   
-    
-      
-      <p class="h5">2020</p>
-    
-    <a href="/2020/02/02/pandas%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88prepare-for-machineLearning%EF%BC%89/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">pandas的学习（prepare for machineLearning）</span>
-      <span style="float: right;">02-02</span>
-    </a>
-  
-    
-      
-      <p class="h5">2019</p>
-    
-    <a href="/2019/12/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMachine-Learning-4/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">学习笔记：Machine Learning(4)</span>
-      <span style="float: right;">12-06</span>
-    </a>
-  
-    
-    <a href="/2019/12/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMachine-Learning-3/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">学习笔记：Machine Learning(3)</span>
-      <span style="float: right;">12-06</span>
-    </a>
-  
-    
-    <a href="/2019/12/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMachine-Learning-2/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">学习笔记：Machine Learning(2)</span>
-      <span style="float: right;">12-05</span>
-    </a>
-  
-    
-    <a href="/2019/12/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMachine-Learning-1/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">学习笔记：Machine Learning(1)</span>
-      <span style="float: right;">12-04</span>
-    </a>
-  
-</div>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
@@ -314,7 +316,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签 - 机器学习&nbsp;",
+        "即使总是阴晴不定，但偶尔也会闪出星星&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 140,
