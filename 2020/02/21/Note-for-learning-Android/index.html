@@ -16,7 +16,7 @@
   <meta name="description" content="Foresight&#39;s blog wangqiuchen 王秋辰">
   <meta name="author" content="Wang Qiuchen">
   <meta name="keywords" content="blog,life,coding">
-  <title>学习笔记：Machine Learning(4) ~ Foresight&#39;s blog</title>
+  <title>Note for learning Android ~ Foresight&#39;s blog</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.2/css/all.min.css"  >
 <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"  >
@@ -120,7 +120,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  2019/12/06,星期五  22:01 
+                  2020/02/21,星期五  16:40 
                 </p>
               
 
@@ -129,7 +129,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    165 字
+                    598 字
                   </span>&nbsp;
                 
 
@@ -164,18 +164,87 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <ul>
-<li>验证 (Validation)</li>
-<li>表示 (Representation)<a id="more"></a>
-<h1 id="验证-Validation"><a href="#验证-Validation" class="headerlink" title="验证 (Validation)"></a>验证 (Validation)</h1><h2 id="更好的工作流程"><a href="#更好的工作流程" class="headerlink" title="更好的工作流程"></a>更好的工作流程</h2></li>
-<li><img src="https://developers.google.cn/machine-learning/crash-course/images/WorkflowWithValidationSet.svg" srcset="/img/loading.gif" alt></li>
-<li>在这一经过改进的工作流程中：<ul>
-<li>选择在验证集上获得最佳效果的模型。</li>
-<li>使用测试集再次检查该模型。</li>
-<li>该工作流程之所以更好，原因在于它暴露给测试集的信息更少。<h1 id="表示-Representation"><a href="#表示-Representation" class="headerlink" title="表示 (Representation)"></a>表示 (Representation)</h1><h2 id="数据表示"><a href="#数据表示" class="headerlink" title="数据表示"></a>数据表示</h2></li>
+            <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><ul>
+<li>接触Android开发不觉已经半年有余，对Android开发的最直观印象便是Android各类组建的复杂，各种组建的使用好像学不完，用不完。从第一次打开Android Studio，到简单组合Github上的Demo，再到学习Java后自己上手写一些代码，总是觉得缺乏了对Android的通透的理解，还是得系统的深入了解。</li>
+<li>高中接触过物竞，所思所学中，有一条最大的感悟便是：任何问题，都可以从微观中思考，从宏观深入到微观，必定能得以答案。</li>
+<li>对代码能力的提高，我觉得也是从细致之处入手，多分析源码，多上手实操。</li>
+<li>学习是有坡度的，这也是我从事开发的漫漫上坡路。<h2 id="四大组件"><a href="#四大组件" class="headerlink" title="四大组件"></a>四大组件</h2><h3 id="mark"><a href="#mark" class="headerlink" title="mark"></a>mark</h3><h2 id="SomeNote"><a href="#SomeNote" class="headerlink" title="SomeNote"></a>SomeNote</h2><h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3></li>
+<li>Context是维持Android程序中各组件能够正常工作的一个核心功能类。</li>
+<li>弹出Toast、启动Activity、启动Service、发送广播、操作数据库等等都需要用到Context。</li>
+<li><pre><code>  TextView tv = new TextView(getContext());
+
+  ListAdapter adapter = new SimpleCursorAdapter(getApplicationContext(), ...);
+
+  AudioManager am = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);getApplicationContext().getSharedPreferences(name, mode);
+
+  getApplicationContext().getContentResolver().query(uri, ...);
+
+  getContext().getResources().getDisplayMetrics().widthPixels * 5 / 8;
+
+  getContext().startActivity(intent);
+
+  getContext().startService(intent);
+
+  getContext().sendBroadcast(intent);
+</code></pre></li>
 </ul>
-</li>
-<li>机器学习模型不能直接看到、听到或感知输入样本。您必须创建数据表示，为模型提供有用的信号来了解数据的关键特性。也就是说，为了训练模型，您必须选择最能代表数据的特征集。</li>
+<h3 id="Bundle-savedInstanceState"><a href="#Bundle-savedInstanceState" class="headerlink" title="Bundle savedInstanceState"></a>Bundle savedInstanceState</h3><ul>
+<li><p>onCreate方法的完整定义如下:</p>
+<pre><code>  public void onCreate(Bundle savedInstanceState){
+  super.onCreate(savedInstanceState);
+  }
+</code></pre></li>
+<li>从上面的代码可以看出，onCreate方法的参数是一个Bundle类型的参数。Bundle类型的数据与Map类型的数据相似，都是以key-value的形式存储数据的。</li>
+<li>从字面上看savedInstanceState，是保存实例状态的。实际上，savedInstanceState也就是保存Activity的状态的</li>
+<li>eg. SnakeView in SnakeGame :</li>
+<li><pre><code>  private int[] coordArrayListToArray(ArrayListcvec) {
+          int count = cvec.size();
+          int[] rawArray = new int[count * 2];
+          for (int index = 0; index &lt; count; index++) {
+              Coordinate c = cvec.get(index);
+              rawArray[2 * index] = c.x;
+              rawArray[2 * index + 1] = c.y;
+          }
+          return rawArray;
+      }
+
+      public Bundle saveState() {
+          Bundle map = new Bundle();
+          map.putIntArray(&quot;mAppleList&quot;, coordArrayListToArray(mAppleList));
+          map.putInt(&quot;mDirection&quot;, Integer.valueOf(mDirection));
+          map.putInt(&quot;mNextDirection&quot;, Integer.valueOf(mNextDirection));
+          map.putLong(&quot;mMoveDelay&quot;, Long.valueOf(mMoveDelay));
+          map.putLong(&quot;mScore&quot;, Long.valueOf(mScore));
+          map.putIntArray(&quot;mSnakeTrail&quot;, coordArrayListToArray(mSnakeTrail));
+          return map;
+      }
+  在snakeActivity中实现
+  @Override
+      public void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.snake_layout);
+          mSnakeView = (SnakeView) findViewById(R.id.snake);
+          mSnakeView.setTextView((TextView) findViewById(R.id.text));
+          if (savedInstanceState == null) {
+              // We were just launched -- set up a new game
+              mSnakeView.setMode(SnakeView.READY);
+          } else {
+              // We are being restored
+              Bundle map = savedInstanceState.getBundle(ICICLE_KEY);
+              if (map != null) {
+                  mSnakeView.restoreState(map);
+              } else {
+                  mSnakeView.setMode(SnakeView.PAUSE);
+              }
+          }
+      }
+  并重写onSavedInstanceState（），此方法会在activity结束时，调用.
+      @Override
+      public void onSaveInstanceState(Bundle outState) {
+          //Store the game state
+          outState.putBundle(ICICLE_KEY, mSnakeView.saveState());
+      }
+</code></pre></li>
 </ul>
 
             <hr>
@@ -184,27 +253,6 @@
           <div>
             <p>
             
-              <span>
-                <i class="iconfont icon-inbox"></i>
-                
-                  <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>
-                  &nbsp;
-                
-              </span>&nbsp;&nbsp;
-            
-            
-              <span>
-                <i class="iconfont icon-tag"></i>
-                
-                  <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95">算法</a>
-                
-                  <a class="hover-with-bg" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>
-                
-                  <a class="hover-with-bg" href="/tags/machine%20learning">machine learning</a>
-                
-                  <a class="hover-with-bg" href="/tags/python">python</a>
-                
-              </span>
             
             </p>
             
@@ -369,7 +417,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "学习笔记：Machine Learning(4)&nbsp;",
+        "Note for learning Android&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 140,
