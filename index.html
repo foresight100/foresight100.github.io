@@ -143,6 +143,71 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/03/05/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95/">
+        <p class="h4 index-header">决策树算法</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">all From hust-xhw
+决策树算法1. 简单概括
+利用熵将整个数据集进行分割
+使得分割后数据集的熵最小
+不断对子数据集进行递归
+直至无法进一步分割或者子数据集里数据的标签都一致时递归结束
+分割的过程会形成一棵决策树
+利用决策树将输入的数据归类到某一分割后的数据集中
+子数据集所带有的标签就是决策的结果
+
+2. 熵的定义和实现
+熵定义为信息的期望值
+
+
+信息的计算公式为
+
+l(x_i) = -log_2p(x_i) \quad 其中 \ p(x_i) \ 是选择某一分类的概率
+信息的期望值为
+
+H = -\sum_{i=1}^n p(x_i)log_2p(x_i)
+核心代码
+def calcShannon(dataSet):
+    dataSetSize = len(dataSet)
+    result = {}
+    # 利用字典统计每一种标签的数据数量
+    for data in dataSet:
+        label = data[-1]
+        result[label] = result.get(label, 0) + 1
+    shanno</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-05&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AE%97%E6%B3%95">算法</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E7%AE%97%E6%B3%95">算法</a>&nbsp;
+          
+            <a href="/tags/python">python</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2020/02/21/Note-for-learning-Android/">
         <p class="h4 index-header">Note for learning Android</p>
         
@@ -210,6 +275,8 @@ anaconda-Navigator的GUI界面安装也是一个不错的选择，对于import p
         
           <i class="iconfont icon-tag"></i>
           
+            <a href="/tags/python">python</a>&nbsp;
+          
             <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>&nbsp;
           
             <a href="/tags/machine%20learning">machine learning</a>&nbsp;
@@ -217,8 +284,6 @@ anaconda-Navigator的GUI界面安装也是一个不错的选择，对于import p
             <a href="/tags/pandas">pandas</a>&nbsp;
           
             <a href="/tags/tensorFlow">tensorFlow</a>&nbsp;
-          
-            <a href="/tags/python">python</a>&nbsp;
           
         
       </div>
@@ -306,13 +371,13 @@ anaconda-Navigator的GUI界面安装也是一个不错的选择，对于import p
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/c++">c++</a>&nbsp;
-          
-            <a href="/tags/%E7%AE%97%E6%B3%95">算法</a>&nbsp;
-          
             <a href="/tags/%E6%8C%87%E9%92%88">指针</a>&nbsp;
           
             <a href="/tags/c%E8%AF%AD%E8%A8%80">c语言</a>&nbsp;
+          
+            <a href="/tags/%E7%AE%97%E6%B3%95">算法</a>&nbsp;
+          
+            <a href="/tags/c++">c++</a>&nbsp;
           
             <a href="/tags/%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1">课程设计</a>&nbsp;
           
@@ -397,11 +462,11 @@ anaconda-Navigator的GUI界面安装也是一个不错的选择，对于import p
           
             <a href="/tags/%E7%AE%97%E6%B3%95">算法</a>&nbsp;
           
+            <a href="/tags/python">python</a>&nbsp;
+          
             <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>&nbsp;
           
             <a href="/tags/machine%20learning">machine learning</a>&nbsp;
-          
-            <a href="/tags/python">python</a>&nbsp;
           
         
       </div>
@@ -448,11 +513,11 @@ anaconda-Navigator的GUI界面安装也是一个不错的选择，对于import p
           
             <a href="/tags/%E7%AE%97%E6%B3%95">算法</a>&nbsp;
           
+            <a href="/tags/python">python</a>&nbsp;
+          
             <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>&nbsp;
           
             <a href="/tags/machine%20learning">machine learning</a>&nbsp;
-          
-            <a href="/tags/python">python</a>&nbsp;
           
             <a href="/tags/TensorFlow">TensorFlow</a>&nbsp;
           
@@ -504,11 +569,11 @@ anaconda-Navigator的GUI界面安装也是一个不错的选择，对于import p
           
             <a href="/tags/%E7%AE%97%E6%B3%95">算法</a>&nbsp;
           
+            <a href="/tags/python">python</a>&nbsp;
+          
             <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>&nbsp;
           
             <a href="/tags/machine%20learning">machine learning</a>&nbsp;
-          
-            <a href="/tags/python">python</a>&nbsp;
           
         
       </div>
@@ -553,53 +618,11 @@ anaconda-Navigator的GUI界面安装也是一个不错的选择，对于import p
         
           <i class="iconfont icon-tag"></i>
           
+            <a href="/tags/python">python</a>&nbsp;
+          
             <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>&nbsp;
           
             <a href="/tags/machine%20learning">machine learning</a>&nbsp;
-          
-            <a href="/tags/python">python</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/12/02/%E5%9F%BA%E4%BA%8EMATLAB%E7%9A%84%E8%AF%AD%E9%9F%B3%E4%BF%A1%E5%8F%B7%E8%AF%86%E5%88%AB/">
-        <p class="h4 index-header">基于MATLAB的语音信号识别</p>
-        
-        
-          
-          
-        
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">在语音识别和话者识别方面，最常用到的语音特征就是梅尔倒谱系数（Mel-scaleFrequency Cepstral Coefficients，简称MFCC）。...</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-02&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/Matlab">Matlab</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Matlab">Matlab</a>&nbsp;
-          
-            <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB">语音识别</a>&nbsp;
-          
-            <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AF%BC%E8%AE%BA">信息导论</a>&nbsp;
-          
-            <a href="/tags/MFCC">MFCC</a>&nbsp;
           
         
       </div>
