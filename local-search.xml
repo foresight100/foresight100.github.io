@@ -5,8 +5,8 @@
   
   <entry>
     <title>决策树算法</title>
-    <link href="/2020/03/05/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95/"/>
-    <url>/2020/03/05/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95/</url>
+    <link href="/2020/03/02/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95/"/>
+    <url>/2020/03/02/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95/</url>
     
     <content type="html"><![CDATA[<p>all From hust-xhw</p><h2 id="决策树算法"><a href="#决策树算法" class="headerlink" title="决策树算法"></a>决策树算法</h2><h4 id="1-简单概括"><a href="#1-简单概括" class="headerlink" title="1. 简单概括"></a>1. 简单概括</h4><blockquote><p>利用熵将整个数据集进行分割</p><p>使得分割后数据集的熵最小</p><p>不断对子数据集进行递归</p><p>直至无法进一步分割或者子数据集里数据的标签都一致时递归结束</p><p>分割的过程会形成一棵决策树</p><p>利用决策树将输入的数据归类到某一分割后的数据集中</p><p>子数据集所带有的标签就是决策的结果</p></blockquote><h4 id="2-熵的定义和实现"><a href="#2-熵的定义和实现" class="headerlink" title="2. 熵的定义和实现"></a>2. 熵的定义和实现</h4><blockquote><p>熵定义为信息的期望值</p></blockquote><ul><li><p><strong>信息的计算公式为</strong></p><script type="math/tex; mode=display">l(x_i) = -log_2p(x_i) \quad 其中 \ p(x_i) \ 是选择某一分类的概率</script></li><li><p><strong>信息的期望值为</strong></p><script type="math/tex; mode=display">H = -\sum_{i=1}^n p(x_i)log_2p(x_i)</script></li><li><p><strong>核心代码</strong></p><pre><code class="lang-python">def calcShannon(dataSet):    dataSetSize = len(dataSet)    result = {}    # 利用字典统计每一种标签的数据数量    for data in dataSet:        label = data[-1]        result[label] = result.get(label, 0) + 1    shannon = 0    # 对于每一种分类计算其概率并统计信息熵    for key in result:        prob = result[key]/dataSetSize        shannon -= prob * math.log(prob, 2)    return shannon</code></pre></li></ul><h4 id="3-分割数据集"><a href="#3-分割数据集" class="headerlink" title="3. 分割数据集"></a>3. 分割数据集</h4><pre><code class="lang-python"># 分割数据集，将维度axis且值为value的数据单独提取出来def splitDataSet(dataSet, axis, value):    result = []    for data in dataSet:        if data[axis] == value:            # 使用axis分割后将axis这一列从数据中去掉            tmp = data[:axis]            # 这里通过entend拼接数组跳过了axis这一列            tmp.extend(data[axis+1:])            result.append(tmp)    return result</code></pre><h4 id="4-选择最好的分割维度"><a href="#4-选择最好的分割维度" class="headerlink" title="4. 选择最好的分割维度"></a>4. 选择最好的分割维度</h4><pre><code class="lang-python">def chooseBestSplitAxis(dataSet):    numOfAxis = len(dataSet[0]) - 1    baseEntropy = calcShannon(dataSet)    bestInfoGain = 0.0    bestAxis = -1    # 对所有维度都循环试验    for axis in range(numOfAxis):        allValue = [x[axis] for x in dataSet]        # 维度下所有可能的不重复值        valueSet = set(allValue)        newEntropy = 0.0        for value in valueSet:            # 按不重复的值分割成子数据集            subDataSet = splitDataSet(dataSet, axis, value)            prob = float(len(subDataSet)) / float(len(dataSet))            # 新的熵为部分熵按比例求和            newEntropy += prob * calcShannon(subDataSet)        # 作差为正说明新熵比旧熵小，混乱程度减小        # newInfoGain = baseEntropy - newEntropy        # if newInfoGain &gt; bestInfoGain:            # bestAxis = axis            # bestInfoGain = newInfoGain        if newEntropy &lt; baseEntropy:            # 上面源码有点绕 简单理解就是熵变小了就选择            bestAxis = axis    return bestAxis</code></pre><h4 id="5-生成决策树"><a href="#5-生成决策树" class="headerlink" title="5. 生成决策树"></a>5. 生成决策树</h4><pre><code class="lang-python">def createTree(dataSet, labels):    labelList = [data[-1] for data in dataSet]    # 递归出口一：子数据集的标签已经统一只有一种，不需要再进一步分割    if labelList.count(labelList[0]) == len(labelList):        return labelList[0]    # 递归出口二：子数据集已经没有了可分割的维度只剩下了标签    if len(dataSet[0]) == 1:        # 统计子数据集中出现次数最多的标签即为决策结果        return voteMaxLabel(labelList)    # 选择熵最小的分割维度    bestAxis = chooseBestSplitAxis(dataSet)    bestLabel = labels[bestAxis]    # 建立决策树字典    myTree = {bestLabel: {}}    # 删除已用于分割的维度对应的标签    del(labels[bestAxis])    allValue = [x[bestAxis] for x in dataSet]    valueSet = set(allValue)    for value in valueSet:        # 复制一遍标签        subLabel = labels[:]        # 采用最好的分割方法分割数据集后递归生成子树        myTree[bestLabel][value] = createTree(splitDataSet(dataSet, bestAxis, value), subLabel)    return myTree</code></pre><h4 id="6-利用决策树进行决策"><a href="#6-利用决策树进行决策" class="headerlink" title="6. 利用决策树进行决策"></a>6. 利用决策树进行决策</h4><ul><li><p><strong>决策树生成范例</strong></p><blockquote><p>{‘flippers’: {0: ‘no’, 1: {‘no surfacing’: {0: ‘no’, 1: ‘yes’}}}}</p><p>其中每一次决策需要用到决策树的两层</p><p>以这里的决策树为例</p><p>第一层‘flippers’为进行决策的标签</p><p>第二层的0和1为在该标签下进行决策的不同选择</p></blockquote></li><li><p><strong>核心代码</strong></p></li></ul><pre><code class="lang-python">def classifyByTree(tree, labels, data):    # 得到进行决策的标签    firstLabel = list(tree.keys())[0]    # 用该标签进行决策的子树    secondDict = tree[firstLabel]    # 得到用于决策的标签所属的维度，用于后面取出数据在该维度的值    firstLabelIndex = labels.index(firstLabel)    classLabel = &#39;Error&#39;    # 对于该标签下进行决策的不同的值    for value in secondDict.keys():        # 如果数据在该决策标签维度下的值等于子树的决策值        if data[firstLabelIndex] == value:            # 如果子树下还有子树（即还是一个字典类型的数据）则继续进行决策            if type(secondDict[value]).__name__ == &#39;dict&#39;:                classLabel = classifyByTree(secondDict[value], labels, data)            else:                # 否则子树下的值就是决策的结果                classLabel = secondDict[value]    return classLabel</code></pre>]]></content>
     
@@ -60,8 +60,6 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>机器学习</tag>
       
       <tag>machine learning</tag>
@@ -69,6 +67,8 @@
       <tag>pandas</tag>
       
       <tag>tensorFlow</tag>
+      
+      <tag>python</tag>
       
     </tags>
     
@@ -118,13 +118,13 @@
     
     <tags>
       
-      <tag>指针</tag>
-      
-      <tag>c语言</tag>
+      <tag>c++</tag>
       
       <tag>算法</tag>
       
-      <tag>c++</tag>
+      <tag>指针</tag>
+      
+      <tag>c语言</tag>
       
       <tag>课程设计</tag>
       
@@ -178,11 +178,11 @@
       
       <tag>算法</tag>
       
-      <tag>python</tag>
-      
       <tag>机器学习</tag>
       
       <tag>machine learning</tag>
+      
+      <tag>python</tag>
       
     </tags>
     
@@ -209,11 +209,11 @@
       
       <tag>算法</tag>
       
-      <tag>python</tag>
-      
       <tag>机器学习</tag>
       
       <tag>machine learning</tag>
+      
+      <tag>python</tag>
       
       <tag>TensorFlow</tag>
       
@@ -242,11 +242,11 @@
       
       <tag>算法</tag>
       
-      <tag>python</tag>
-      
       <tag>机器学习</tag>
       
       <tag>machine learning</tag>
+      
+      <tag>python</tag>
       
     </tags>
     
@@ -271,11 +271,11 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>机器学习</tag>
       
       <tag>machine learning</tag>
+      
+      <tag>python</tag>
       
     </tags>
     
@@ -331,11 +331,11 @@
     
     <tags>
       
-      <tag>算法</tag>
-      
       <tag>c++</tag>
       
       <tag>c</tag>
+      
+      <tag>算法</tag>
       
     </tags>
     
