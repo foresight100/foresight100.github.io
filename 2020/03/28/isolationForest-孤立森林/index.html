@@ -129,7 +129,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    2.8k 字
+                    2.9k 字
                   </span>&nbsp;
                 
 
@@ -252,16 +252,11 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.ensemble import IsolationForest
 
-#%%
-
 df = pd.read_csv(&#39;salary.csv&#39;)
 df.head(len(df))
 
-#%% md
-
-**定义及拟合模型
-
-
+&#39;&#39;&#39;
+定义及拟合模型
 我们要创建一个模型变量，并实例化 IsolationForest（孤立森林）类。将这四个参数的值传递到孤立森林方法中，如下所示。
 
 
@@ -272,8 +267,7 @@ df.head(len(df))
 数据污染问题：算法对这个参数非常敏感，它指的是数据集中离群值的期望比例，根据样本得分拟合定义阈值时使用。默认值是『auto』。如果取『auto』值，则根据孤立森林的原始论文定义阈值；
 
 最大特征：所有基评估器都不是用数据集中所有特征训练的。这是从所有特征中提出的、用于训练每个基评估器或树的特征数量。该参数的默认值是 1。
-
-#%%
+&#39;&#39;&#39;
 
 model=IsolationForest(n_estimators=100,
                       max_samples=&#39;auto&#39;, 
@@ -281,31 +275,21 @@ model=IsolationForest(n_estimators=100,
                       max_features=1.0)
 model.fit(df[[&#39;salary&#39;]])
 
-#%%
-
 df[&#39;scores&#39;]=model.decision_function(df[[&#39;salary&#39;]])
 df[&#39;anomaly&#39;]=model.predict(df[[&#39;salary&#39;]])
 df.head(len(df))
-
-#%%
 
 anomaly=df.loc[df[&#39;anomaly&#39;]==-1]
 anomaly_index=list(anomaly.index)
 print(anomaly)
 print(anomaly_index)
 
-#%%
-
 outliers_counter = len(df[df[&#39;salary&#39;] &gt; 9999999])
 outliers_counter
 
-#%%
-
 print(&quot;Accuracy percentage:&quot;, 100*list(df[&#39;anomaly&#39;]).count(-1)/(outliers_counter))
-
-#%%
 </code></pre>
-<p>.csv</p>
+<p>salary.csv</p>
 <pre><code class="lang-markdown">salary
 26100
 42344
