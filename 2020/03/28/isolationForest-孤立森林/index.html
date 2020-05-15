@@ -8,29 +8,34 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
-  <link rel="icon" type="image/png" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+  <meta name="theme-color" content="#2f4154">
   <meta name="description" content="Foresight&#39;s blog wangqiuchen 王秋辰">
   <meta name="author" content="Wang Qiuchen">
   <meta name="keywords" content="blog,life,coding">
-  <title>isolationForest 孤立森林 ~ Foresight&#39;s blog</title>
+  <title>isolationForest 孤立森林 - Foresight&#39;s blog</title>
 
-  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.2/css/all.min.css"  >
-<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"  >
-<link rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.8.9/css/mdb.min.css"  >
-<link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css"  >
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
 
 
-  <link rel="stylesheet" href="/lib/prettify/github-v2.min.css"  >
-
-<link rel="stylesheet" href="/css/main.css"  >
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
 
 
-  <link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css"  >
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
 
 
 </head>
@@ -41,7 +46,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Foresight's blog</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>WangQiuchen</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -56,41 +61,55 @@
           
           
           
-          
           <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
           </li>
         
           
           
           
-          
           <li class="nav-item">
-            <a class="nav-link" href="/archives/">归档</a>
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
           </li>
         
           
           
           
-          
           <li class="nav-item">
-            <a class="nav-link" href="/categories/">分类</a>
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
           </li>
         
           
           
           
-          
           <li class="nav-item">
-            <a class="nav-link" href="/tags/">标签</a>
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
           </li>
         
           
           
           
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+          
+          
           
           <li class="nav-item">
-            <a class="nav-link" href="/about/">关于</a>
+            <a class="nav-link" href="/links/">
+              <i class="iconfont icon-link-fill"></i>
+              友链</a>
           </li>
         
         
@@ -104,46 +123,48 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background"
-         style="background: url('/img/img1.jpg')no-repeat center center;
-           background-size: cover;
-           background-attachment: fixed;">
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/img1.jpg') no-repeat center center;
+           background-size: cover;">
       <div class="full-bg-img">
-        <div class="mask rgba-black-light flex-center">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
             </span>
 
             
-              <br>
               
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  2020/03/28,星期六  02:20 
-                </p>
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-03-28 02:20">
+                    2020年3月28日 凌晨
+                  </time>
+                </div>
               
 
-              <p>
+              <div class="mt-1">
                 
                   
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    2.9k 字
-                  </span>&nbsp;
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    2.8k 字
+                  </span>
                 
 
                 
-
-                
-                  <!-- 不蒜子统计文章PV -->
                   
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>&nbsp;
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    31
+                     分钟
+                  </span>
                 
-              </p>
+
+                
+              </div>
             
           </div>
 
@@ -161,10 +182,12 @@
   <div class="row">
     <div class="d-none d-lg-block col-lg-2"></div>
     <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            <p>王秋辰的技术分享 in DianGroup    2020.3</p>
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <p>王秋辰的技术分享 in DianGroup    2020.3</p>
 <a id="more"></a>
 <h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><ul>
 <li>介绍异常检测；</li>
@@ -193,16 +216,16 @@
 <p>这一算法也适用于小数据集。</p>
 <p>接着我们对数据做一些探索性分析，以了解给定数据的相关信息。</p>
 <h2 id="探索性数据分析"><a href="#探索性数据分析" class="headerlink" title="探索性数据分析"></a><strong>探索性数据分析</strong></h2><p>先导入所需的库。导入 numpy、pandas、seaborn 和 matplotlib。此外还要从 sklearn.ensemble 中导入孤立森林（IsolationForest）。</p>
-<pre><code>import numpy as np
+<pre><code class="hljs plain">import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.ensemble import IsolationForest
-</code></pre><p>导入库后，要将 csv 数据读取为 padas 数据框，检查前十行数据。</p>
+from sklearn.ensemble import IsolationForest</code></pre>
+<p>导入库后，要将 csv 数据读取为 padas 数据框，检查前十行数据。</p>
 <p>本文所用数据是不同职业的人的年薪（美元）。数据中有一些异常值（比如工资太高或太低），目标是检测这些异常值。</p>
-<pre><code>df = pd.read_csv(&#39;salary.csv&#39;)
-df.head(10)
-</code></pre><p>为了更好地了解数据，将工资数据绘制成小提琴图，如下图所示。小提琴图是一种绘制数值数据的方法。</p>
+<pre><code class="hljs plain">df &#x3D; pd.read_csv(&#39;salary.csv&#39;)
+df.head(10)</code></pre>
+<p>为了更好地了解数据，将工资数据绘制成小提琴图，如下图所示。小提琴图是一种绘制数值数据的方法。</p>
 <p>通常，小提琴图包含箱图中所有数据——中位数的标记和四分位距的框或标记，如果样本数量不太大，图中可能还包括所有样本点。</p>
 <p><em>工资的小提琴图。</em></p>
 <p>为了更好地了解离群值，可能还会查看箱图。箱图一般也称为箱线图。箱图中的箱子显示了数据集的四分位数，线表示剩余的分布。线不表示确定为离群值的点。</p>
@@ -217,9 +240,9 @@ df.head(10)
 <li>数据污染问题：算法对这个参数非常敏感，它指的是数据集中离群值的期望比例，根据样本得分拟合定义阈值时使用。默认值是『auto』。如果取『auto』值，则根据孤立森林的原始论文定义阈值；</li>
 <li>最大特征：所有基评估器都不是用数据集中所有特征训练的。这是从所有特征中提出的、用于训练每个基评估器或树的特征数量。该参数的默认值是 1。</li>
 </ul>
-<pre><code>model=IsolationForest(n_estimators=50, max_samples=&#39;auto&#39;, contamination=float(0.1),max_features=1.0)
-model.fit(df[[&#39;salary&#39;]])
-</code></pre><p><em>孤立森林模型训练输出。</em></p>
+<pre><code class="hljs plain">model&#x3D;IsolationForest(n_estimators&#x3D;50, max_samples&#x3D;&#39;auto&#39;, contamination&#x3D;float(0.1),max_features&#x3D;1.0)
+model.fit(df[[&#39;salary&#39;]])</code></pre>
+<p><em>孤立森林模型训练输出。</em></p>
 <p>模型定义完后，就要用给定的数据训练模型了，这是用 fit() 方法实现的。这个方法要传入一个参数——使用的数据（在本例中，是数据集中的工资列）。</p>
 <p>正确训练模型后，将会输出孤立森林实例（如图所示）。现在可以添加分数和数据集的异常列了。</p>
 <p><strong>添加分数和异常列</strong></p>
@@ -227,35 +250,35 @@ model.fit(df[[&#39;salary&#39;]])
 <p>类似的，可以对训练后的模型调用 predict() 函数，并传入工资作为参数，找到异常列的值。</p>
 <p>将这两列添加到数据框 df 中。添加完这两列后，查看数据框。如我们所料，数据框现在有三列：工资、分数和异常值。分数列中的负值和异常列中的 -1 表示出现异常。异常列中的 1 表示正常数据。</p>
 <p>这个算法给训练集中的每个数据点都分配了异常分数。可以定义阈值，根据异常分数，如果分数高于预定义的阈值，就可以将这个数据点标记为异常。</p>
-<pre><code>df[&#39;scores&#39;]=model.decision_function(df[[&#39;salary&#39;]])
-df[&#39;anomaly&#39;]=model.predict(df[[&#39;salary&#39;]])
-df.head(20)
-</code></pre><p><em>给数据的每一行中都添加了分数和异常值后，就可以打印预测的异常了。</em></p>
+<pre><code class="hljs plain">df[&#39;scores&#39;]&#x3D;model.decision_function(df[[&#39;salary&#39;]])
+df[&#39;anomaly&#39;]&#x3D;model.predict(df[[&#39;salary&#39;]])
+df.head(20)</code></pre>
+<p><em>给数据的每一行中都添加了分数和异常值后，就可以打印预测的异常了。</em></p>
 <p><strong>打印异常</strong></p>
 <p>为了打印数据中预测得到的异常，在添加分数列和异常列后要分析数据。如前文所述，预测的异常在预测列中的值为 -1，分数为负数。根据这一信息，将预测的异常（本例中是两个数据点）打印如下。</p>
-<pre><code>anomaly=df.loc[df[&#39;anomaly&#39;]==-1]
-anomaly_index=list(anomaly.index)
-print(anomaly)
-</code></pre><p>注意，这样不仅能打印异常值，还能打印异常值在数据集中的索引，这对于进一步处理是很有用的。</p>
+<pre><code class="hljs plain">anomaly&#x3D;df.loc[df[&#39;anomaly&#39;]&#x3D;&#x3D;-1]
+anomaly_index&#x3D;list(anomaly.index)
+print(anomaly)</code></pre>
+<p>注意，这样不仅能打印异常值，还能打印异常值在数据集中的索引，这对于进一步处理是很有用的。</p>
 <h2 id="评估模型"><a href="#评估模型" class="headerlink" title="评估模型"></a><strong>评估模型</strong></h2><p>为了评估模型，将阈值设置为工资&gt;99999 的为离群值。用以下代码找出数据中存在的离群值：</p>
-<pre><code>outliers_counter = len(df[df[&#39;salary&#39;] &gt; 99999])
-outliers_counter
-</code></pre><p>计算模型找到的离群值数量除以数据中的离群值数量，得到模型的准确率。</p>
-<pre><code>print(&quot;Accuracy percentage:&quot;, 100*list(df[&#39;anomaly&#39;]).count(-1)/(outliers_counter))
-</code></pre><p>准确率：100%</p>
+<pre><code class="hljs plain">outliers_counter &#x3D; len(df[df[&#39;salary&#39;] &gt; 99999])
+outliers_counter</code></pre>
+<p>计算模型找到的离群值数量除以数据中的离群值数量，得到模型的准确率。</p>
+<pre><code class="hljs plain">print(&quot;Accuracy percentage:&quot;, 100*list(df[&#39;anomaly&#39;]).count(-1)&#x2F;(outliers_counter))</code></pre>
+<p>准确率：100%</p>
 <h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p>以jupyter notebook打开最佳</p>
-<pre><code class="lang-python">#%%
+<pre><code class="hljs python"><span class="hljs-comment">#%%</span>
 
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-from sklearn.ensemble import IsolationForest
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> IsolationForest
 
-df = pd.read_csv(&#39;salary.csv&#39;)
+df = pd.read_csv(<span class="hljs-string">'salary.csv'</span>)
 df.head(len(df))
 
-&#39;&#39;&#39;
+<span class="hljs-string">'''
 定义及拟合模型
 我们要创建一个模型变量，并实例化 IsolationForest（孤立森林）类。将这四个参数的值传递到孤立森林方法中，如下所示。
 
@@ -267,30 +290,29 @@ df.head(len(df))
 数据污染问题：算法对这个参数非常敏感，它指的是数据集中离群值的期望比例，根据样本得分拟合定义阈值时使用。默认值是『auto』。如果取『auto』值，则根据孤立森林的原始论文定义阈值；
 
 最大特征：所有基评估器都不是用数据集中所有特征训练的。这是从所有特征中提出的、用于训练每个基评估器或树的特征数量。该参数的默认值是 1。
-&#39;&#39;&#39;
+'''</span>
 
-model=IsolationForest(n_estimators=100,
-                      max_samples=&#39;auto&#39;, 
-                      contamination=&#39;auto&#39;,# 
-                      max_features=1.0)
-model.fit(df[[&#39;salary&#39;]])
+model=IsolationForest(n_estimators=<span class="hljs-number">100</span>,
+                      max_samples=<span class="hljs-string">'auto'</span>, 
+                      contamination=<span class="hljs-string">'auto'</span>,<span class="hljs-comment"># </span>
+                      max_features=<span class="hljs-number">1.0</span>)
+model.fit(df[[<span class="hljs-string">'salary'</span>]])
 
-df[&#39;scores&#39;]=model.decision_function(df[[&#39;salary&#39;]])
-df[&#39;anomaly&#39;]=model.predict(df[[&#39;salary&#39;]])
+df[<span class="hljs-string">'scores'</span>]=model.decision_function(df[[<span class="hljs-string">'salary'</span>]])
+df[<span class="hljs-string">'anomaly'</span>]=model.predict(df[[<span class="hljs-string">'salary'</span>]])
 df.head(len(df))
 
-anomaly=df.loc[df[&#39;anomaly&#39;]==-1]
+anomaly=df.loc[df[<span class="hljs-string">'anomaly'</span>]==<span class="hljs-number">-1</span>]
 anomaly_index=list(anomaly.index)
 print(anomaly)
 print(anomaly_index)
 
-outliers_counter = len(df[df[&#39;salary&#39;] &gt; 9999999])
+outliers_counter = len(df[df[<span class="hljs-string">'salary'</span>] &gt; <span class="hljs-number">9999999</span>])
 outliers_counter
 
-print(&quot;Accuracy percentage:&quot;, 100*list(df[&#39;anomaly&#39;]).count(-1)/(outliers_counter))
-</code></pre>
+print(<span class="hljs-string">"Accuracy percentage:"</span>, <span class="hljs-number">100</span>*list(df[<span class="hljs-string">'anomaly'</span>]).count(<span class="hljs-number">-1</span>)/(outliers_counter))</code></pre>
 <p>salary.csv</p>
-<pre><code class="lang-markdown">salary
+<pre><code class="hljs markdown">salary
 26100
 42344
 43254
@@ -318,74 +340,94 @@ print(&quot;Accuracy percentage:&quot;, 100*list(df[&#39;anomaly&#39;]).count(-1
 43253
 43253
 53453
-42424
-</code></pre>
+42424</code></pre>
 
+            </article>
             <hr>
-          </div>
-          <br>
-          <div>
-            <p>
-            
-              <span>
-                <i class="iconfont icon-inbox"></i>
+            <div>
+              <div class="post-metas mb-3">
                 
-                  <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>
-                  &nbsp;
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+                    
+                  </div>
                 
-              </span>&nbsp;&nbsp;
-            
-            
-              <span>
-                <i class="iconfont icon-tag"></i>
                 
-                  <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95">算法</a>
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/tags/machine-learning/">machine learning</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+                    
+                      <a class="hover-with-bg" href="/tags/isolationForest/">isolationForest</a>
+                    
+                      <a class="hover-with-bg" href="/tags/forest/">forest</a>
+                    
+                      <a class="hover-with-bg" href="/tags/shear/">shear</a>
+                    
+                  </div>
                 
-                  <a class="hover-with-bg" href="/tags/machine%20learning">machine learning</a>
-                
-                  <a class="hover-with-bg" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>
-                
-                  <a class="hover-with-bg" href="/tags/isolationForest">isolationForest</a>
-                
-                  <a class="hover-with-bg" href="/tags/forest">forest</a>
-                
-                  <a class="hover-with-bg" href="/tags/shear">shear</a>
-                
-              </span>
-            
-            </p>
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/05/Blog%E6%96%B0%E5%A2%9E%E5%AE%89%E5%8D%93%E7%89%88%E5%AE%A2%E6%88%B7%E7%AB%AF/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Blog新增安卓版客户端</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/15/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E2%80%94observer-Eventbus/">
+                        <span class="hidden-mobile">观察者模式—observer-Eventbus</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
             
           </div>
         </div>
       </div>
     </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
-    <div id="tocbot"></div>
-  </div>
-
-    </div>
-  </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
 </div>
 
-<!-- custom -->
-
-
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
+      </div>
     
   </div>
 </div>
+
+<!-- Custom -->
+
 
     
   </main>
 
   
-    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
-      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
     </a>
   
 
@@ -413,63 +455,85 @@ print(&quot;Accuracy percentage:&quot;, 100*list(df[&#39;anomaly&#39;]).count(-1
 </div>
   
 
+  
+
+  
+
   <footer class="mt-5">
   <div class="text-center py-3">
-    <b>Welcome</b></a>
-    <i class="iconfont icon-love"></i>
-    <b>来啦！</b></a>
-    <br>
-
     
-  
-    <!-- 不蒜子统计PV -->
+  <div>
     
-    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
-          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
-  
-  
-    <!-- 不蒜子统计UV -->
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
     
-    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
-            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
-  
-  <br>
-
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
 
 
     
 
-
-    <!-- cnzz Analytics icon -->
     
-
   </div>
 </footer>
 
 <!-- SCRIPTS -->
-<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js" ></script>
-<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js" ></script>
-<script src="https://cdn.staticfile.org/mdbootstrap/4.8.9/js/mdb.min.js" ></script>
-<script src="/js/main.js" ></script>
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
 
 
-  <script src="/js/lazyload.js" ></script>
+  <script  src="/js/lazyload.js" ></script>
 
 
 
   
-    <script src="https://cdn.staticfile.org/tocbot/4.8.0/tocbot.min.js" ></script>
-  
-  <script src="/js/post.js" ></script>
+  <script  src="https://cdn.staticfile.org/tocbot/4.8.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
 
 
 
-  <script src="https://cdn.staticfile.org/smooth-scroll/16.1.0/smooth-scroll.min.js" ></script>
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
 
 
 
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
 
 
 <!-- Plugins -->
@@ -480,38 +544,16 @@ print(&quot;Accuracy percentage:&quot;, 100*list(df[&#39;anomaly&#39;]).count(-1
   
 
   
-    <!-- Tencent Analytics -->
-    <script>
-      var _mtac = {};
-      (function () {
-        var mta = document.createElement("script");
-        mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
-        mta.setAttribute("name", "MTAH5");
-        mta.setAttribute("sid", "500708131");
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(mta, s);
-      })();
-    </script>
+
+  
+
   
 
   
 
-  <!-- cnzz Analytics -->
-  
 
 
-
-  <script src="https://cdn.staticfile.org/prettify/r298/prettify.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      $('pre').addClass('prettyprint  linenums');
-      prettyPrint();
-    })
-  </script>
-
-
-
-  <script src="https://cdn.staticfile.org/typed.js/2.0.10/typed.min.js" ></script>
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.10/typed.min.js" ></script>
   <script>
     var typed = new Typed('#subtitle', {
       strings: [
@@ -531,11 +573,11 @@ print(&quot;Accuracy percentage:&quot;, 100*list(df[&#39;anomaly&#39;]).count(-1
 
 
 
-  <script src="https://cdn.staticfile.org/anchor-js/4.2.0/anchor.min.js" ></script>
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.0/anchor.min.js" ></script>
   <script>
     anchors.options = {
       placement: "right",
-      visible: "false",
+      visible: "hover",
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -548,29 +590,38 @@ print(&quot;Accuracy percentage:&quot;, 100*list(df[&#39;anomaly&#39;]).count(-1
 
 
 
-  <script src="/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
   <script>
     var path = "/local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
-      getSearchFile(path);
+      searchFunc(path, 'local-search-input', 'local-search-result');
       this.onclick = null
     }
   </script>
 
 
 
-  <script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
   <script>
-    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
       function () {
-        var element = document.createElement("a");
-        $(element).attr("data-fancybox", "images");
-        $(element).attr("href", $(this).attr("src"));
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
         $(this).wrap(element);
       }
     );
   </script>
+
+
+
+
+
+
+
 
 
 

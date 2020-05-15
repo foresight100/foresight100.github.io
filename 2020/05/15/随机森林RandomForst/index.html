@@ -17,7 +17,7 @@
   <meta name="description" content="Foresight&#39;s blog wangqiuchen 王秋辰">
   <meta name="author" content="Wang Qiuchen">
   <meta name="keywords" content="blog,life,coding">
-  <title>决策树算法 - Foresight&#39;s blog</title>
+  <title>随机森林RandomForst - Foresight&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
@@ -137,8 +137,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-03-02 23:44">
-                    2020年3月2日 晚上
+                  <time datetime="2020-05-15 11:12">
+                    2020年5月15日 上午
                   </time>
                 </div>
               
@@ -148,7 +148,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    1k 字
+                    727 字
                   </span>
                 
 
@@ -158,7 +158,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    13
+                    12
                      分钟
                   </span>
                 
@@ -187,155 +187,162 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>all From hust-xhw</p>
-<h2 id="决策树算法"><a href="#决策树算法" class="headerlink" title="决策树算法"></a>决策树算法</h2><h4 id="1-简单概括"><a href="#1-简单概括" class="headerlink" title="1. 简单概括"></a>1. 简单概括</h4><blockquote>
-<p>利用熵将整个数据集进行分割</p>
-<p>使得分割后数据集的熵最小</p>
-<p>不断对子数据集进行递归</p>
-<p>直至无法进一步分割或者子数据集里数据的标签都一致时递归结束</p>
-<p>分割的过程会形成一棵决策树</p>
-<p>利用决策树将输入的数据归类到某一分割后的数据集中</p>
-<p>子数据集所带有的标签就是决策的结果</p>
-</blockquote>
-<h4 id="2-熵的定义和实现"><a href="#2-熵的定义和实现" class="headerlink" title="2. 熵的定义和实现"></a>2. 熵的定义和实现</h4><blockquote>
-<p>熵定义为信息的期望值</p>
-</blockquote>
+              <ul>
+<li><p>python语言随机森林</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> decision_tree.decision_tree_model  <span class="hljs-keyword">import</span> ClassificationTree
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RandomForest</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">"""Random Forest classifier. Uses a collection of classification trees that
+    trains on random subsets of the data using a random subsets of the features.
+
+    Parameters:
+    -----------
+    n_estimators: int
+        树的数量
+        The number of classification trees that are used.
+    max_features: int
+        每棵树选用数据集中的最大的特征数
+        The maximum number of features that the classification trees are allowed to
+        use.
+    min_samples_split: int
+        每棵树中最小的分割数，比如 min_samples_split = 2表示树切到还剩下两个数据集时就停止
+        The minimum number of samples needed to make a split when building a tree.
+    min_gain: float
+        每棵树切到小于min_gain后停止
+        The minimum impurity required to split the tree further.
+    max_depth: int
+        每棵树的最大层数
+        The maximum depth of a tree.
+    """</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, n_estimators=<span class="hljs-number">100</span>, min_samples_split=<span class="hljs-number">2</span>, min_gain=<span class="hljs-number">0</span>,
+                 max_depth=float<span class="hljs-params">(<span class="hljs-string">"inf"</span>)</span>, max_features=None)</span>:</span>
+
+        self.n_estimators = n_estimators
+        self.min_samples_split = min_samples_split
+        self.min_gain = min_gain
+        self.max_depth = max_depth
+        self.max_features = max_features
+
+        self.trees = []
+        <span class="hljs-comment"># 建立森林(bulid forest)</span>
+        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(self.n_estimators):
+            tree = ClassificationTree(min_samples_split=self.min_samples_split, min_impurity=self.min_gain,
+                                      max_depth=self.max_depth)
+            self.trees.append(tree)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fit</span><span class="hljs-params">(self, X, Y)</span>:</span>
+        <span class="hljs-comment"># 训练，每棵树使用随机的数据集(bootstrap)和随机的特征</span>
+        <span class="hljs-comment"># every tree use random data set(bootstrap) and random feature</span>
+        sub_sets = self.get_bootstrap_data(X, Y)
+        n_features = X.shape[<span class="hljs-number">1</span>]
+        <span class="hljs-keyword">if</span> self.max_features == <span class="hljs-literal">None</span>:
+            self.max_features = int(np.sqrt(n_features))
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(self.n_estimators):
+            <span class="hljs-comment"># 生成随机的特征</span>
+            <span class="hljs-comment"># get random feature</span>
+            sub_X, sub_Y = sub_sets[i]
+            idx = np.random.choice(n_features, self.max_features, replace=<span class="hljs-literal">True</span>)
+            sub_X = sub_X[:, idx]
+            self.trees[i].fit(sub_X, sub_Y)
+            self.trees[i].feature_indices = idx
+            print(<span class="hljs-string">"tree"</span>, i, <span class="hljs-string">"fit complete"</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">(self, X)</span>:</span>
+        y_preds = []
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(self.n_estimators):
+            idx = self.trees[i].feature_indices
+            sub_X = X[:, idx]
+            y_pre = self.trees[i].predict(sub_X)
+            y_preds.append(y_pre)
+        y_preds = np.array(y_preds).T
+        y_pred = []
+        <span class="hljs-keyword">for</span> y_p <span class="hljs-keyword">in</span> y_preds:
+            <span class="hljs-comment"># np.bincount()可以统计每个索引出现的次数</span>
+            <span class="hljs-comment"># np.argmax()可以返回数组中最大值的索引</span>
+            <span class="hljs-comment"># cheak np.bincount() and np.argmax() in numpy Docs</span>
+            y_pred.append(np.bincount(y_p.astype(<span class="hljs-string">'int'</span>)).argmax())
+        <span class="hljs-keyword">return</span> y_pred
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_bootstrap_data</span><span class="hljs-params">(self, X, Y)</span>:</span>
+
+        <span class="hljs-comment"># 通过bootstrap的方式获得n_estimators组数据</span>
+        <span class="hljs-comment"># get int(n_estimators) datas by bootstrap</span>
+
+        m = X.shape[<span class="hljs-number">0</span>]
+        Y = Y.reshape(m, <span class="hljs-number">1</span>)
+
+        <span class="hljs-comment"># 合并X和Y，方便bootstrap (conbine X and Y)</span>
+        X_Y = np.hstack((X, Y))
+        np.random.shuffle(X_Y)
+
+        data_sets = []
+        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(self.n_estimators):
+            idm = np.random.choice(m, m, replace=<span class="hljs-literal">True</span>)
+            bootstrap_X_Y = X_Y[idm, :]
+            bootstrap_X = bootstrap_X_Y[:, :<span class="hljs-number">-1</span>]
+            bootstrap_Y = bootstrap_X_Y[:, <span class="hljs-number">-1</span>:]
+            data_sets.append([bootstrap_X, bootstrap_Y])
+        <span class="hljs-keyword">return</span> data_sets</code></pre>
+</li>
+</ul>
 <ul>
-<li><p><strong>信息的计算公式为</strong></p>
-<script type="math/tex; mode=display">
-l(x_i) = -log_2p(x_i) \quad 其中 \ p(x_i) \ 是选择某一分类的概率</script></li>
-<li><p><strong>信息的期望值为</strong></p>
-<script type="math/tex; mode=display">
-H = -\sum_{i=1}^n p(x_i)log_2p(x_i)</script></li>
-<li><p><strong>核心代码</strong></p>
-<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calcShannon</span><span class="hljs-params">(dataSet)</span>:</span>
-    dataSetSize = len(dataSet)
-    result = &#123;&#125;
-    <span class="hljs-comment"># 利用字典统计每一种标签的数据数量</span>
-    <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> dataSet:
-        label = data[<span class="hljs-number">-1</span>]
-        result[label] = result.get(label, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>
-    shannon = <span class="hljs-number">0</span>
-    <span class="hljs-comment"># 对于每一种分类计算其概率并统计信息熵</span>
-    <span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> result:
-        prob = result[key]/dataSetSize
-        shannon -= prob * math.log(prob, <span class="hljs-number">2</span>)
-    <span class="hljs-keyword">return</span> shannon</code></pre>
+<li><p>大部分模型在sklearn早已封装好：</p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> division, print_function
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> datasets
+<span class="hljs-keyword">from</span> utils <span class="hljs-keyword">import</span> train_test_split, accuracy_score, Plot
+<span class="hljs-keyword">from</span> random_forest.random_forest_model <span class="hljs-keyword">import</span> RandomForest
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>:</span>
+    data = datasets.load_digits()
+    X = data.data
+    y = data.target
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="hljs-number">0.4</span>, seed=<span class="hljs-number">2</span>)
+    print(<span class="hljs-string">"X_train.shape:"</span>, X_train.shape)
+    print(<span class="hljs-string">"Y_train.shape:"</span>, y_train.shape)
+
+    clf = RandomForest(n_estimators=<span class="hljs-number">100</span>)
+    clf.fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
+
+    accuracy = accuracy_score(y_test, y_pred)
+
+    print(<span class="hljs-string">"Accuracy:"</span>, accuracy)
+
+    Plot().plot_in_2d(X_test, y_pred, title=<span class="hljs-string">"Random Forest"</span>, accuracy=accuracy, legend_labels=data.target_names)
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</code></pre>
 </li>
 </ul>
-<h4 id="3-分割数据集"><a href="#3-分割数据集" class="headerlink" title="3. 分割数据集"></a>3. 分割数据集</h4><pre><code class="hljs python"><span class="hljs-comment"># 分割数据集，将维度axis且值为value的数据单独提取出来</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">splitDataSet</span><span class="hljs-params">(dataSet, axis, value)</span>:</span>
-    result = []
-    <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> dataSet:
-        <span class="hljs-keyword">if</span> data[axis] == value:
-            <span class="hljs-comment"># 使用axis分割后将axis这一列从数据中去掉</span>
-            tmp = data[:axis]
-            <span class="hljs-comment"># 这里通过entend拼接数组跳过了axis这一列</span>
-            tmp.extend(data[axis+<span class="hljs-number">1</span>:])
-            result.append(tmp)
-    <span class="hljs-keyword">return</span> result</code></pre>
-<h4 id="4-选择最好的分割维度"><a href="#4-选择最好的分割维度" class="headerlink" title="4. 选择最好的分割维度"></a>4. 选择最好的分割维度</h4><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">chooseBestSplitAxis</span><span class="hljs-params">(dataSet)</span>:</span>
-    numOfAxis = len(dataSet[<span class="hljs-number">0</span>]) - <span class="hljs-number">1</span>
-    baseEntropy = calcShannon(dataSet)
-    bestInfoGain = <span class="hljs-number">0.0</span>
-    bestAxis = <span class="hljs-number">-1</span>
-    <span class="hljs-comment"># 对所有维度都循环试验</span>
-    <span class="hljs-keyword">for</span> axis <span class="hljs-keyword">in</span> range(numOfAxis):
-        allValue = [x[axis] <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> dataSet]
-        <span class="hljs-comment"># 维度下所有可能的不重复值</span>
-        valueSet = set(allValue)
-        newEntropy = <span class="hljs-number">0.0</span>
-        <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> valueSet:
-            <span class="hljs-comment"># 按不重复的值分割成子数据集</span>
-            subDataSet = splitDataSet(dataSet, axis, value)
-            prob = float(len(subDataSet)) / float(len(dataSet))
-            <span class="hljs-comment"># 新的熵为部分熵按比例求和</span>
-            newEntropy += prob * calcShannon(subDataSet)
-        <span class="hljs-comment"># 作差为正说明新熵比旧熵小，混乱程度减小</span>
-        <span class="hljs-comment"># newInfoGain = baseEntropy - newEntropy</span>
-        <span class="hljs-comment"># if newInfoGain &gt; bestInfoGain:</span>
-            <span class="hljs-comment"># bestAxis = axis</span>
-            <span class="hljs-comment"># bestInfoGain = newInfoGain</span>
-        <span class="hljs-keyword">if</span> newEntropy &lt; baseEntropy:
-            <span class="hljs-comment"># 上面源码有点绕 简单理解就是熵变小了就选择</span>
-            bestAxis = axis
-    <span class="hljs-keyword">return</span> bestAxis</code></pre>
-<h4 id="5-生成决策树"><a href="#5-生成决策树" class="headerlink" title="5. 生成决策树"></a>5. 生成决策树</h4><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">createTree</span><span class="hljs-params">(dataSet, labels)</span>:</span>
-    labelList = [data[<span class="hljs-number">-1</span>] <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> dataSet]
-    <span class="hljs-comment"># 递归出口一：子数据集的标签已经统一只有一种，不需要再进一步分割</span>
-    <span class="hljs-keyword">if</span> labelList.count(labelList[<span class="hljs-number">0</span>]) == len(labelList):
-        <span class="hljs-keyword">return</span> labelList[<span class="hljs-number">0</span>]
-    <span class="hljs-comment"># 递归出口二：子数据集已经没有了可分割的维度只剩下了标签</span>
-    <span class="hljs-keyword">if</span> len(dataSet[<span class="hljs-number">0</span>]) == <span class="hljs-number">1</span>:
-        <span class="hljs-comment"># 统计子数据集中出现次数最多的标签即为决策结果</span>
-        <span class="hljs-keyword">return</span> voteMaxLabel(labelList)
-    <span class="hljs-comment"># 选择熵最小的分割维度</span>
-    bestAxis = chooseBestSplitAxis(dataSet)
-    bestLabel = labels[bestAxis]
-    <span class="hljs-comment"># 建立决策树字典</span>
-    myTree = &#123;bestLabel: &#123;&#125;&#125;
-    <span class="hljs-comment"># 删除已用于分割的维度对应的标签</span>
-    <span class="hljs-keyword">del</span>(labels[bestAxis])
-    allValue = [x[bestAxis] <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> dataSet]
-    valueSet = set(allValue)
-    <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> valueSet:
-        <span class="hljs-comment"># 复制一遍标签</span>
-        subLabel = labels[:]
-        <span class="hljs-comment"># 采用最好的分割方法分割数据集后递归生成子树</span>
-        myTree[bestLabel][value] = createTree(splitDataSet(dataSet, bestAxis, value), subLabel)
-    <span class="hljs-keyword">return</span> myTree</code></pre>
-<h4 id="6-利用决策树进行决策"><a href="#6-利用决策树进行决策" class="headerlink" title="6. 利用决策树进行决策"></a>6. 利用决策树进行决策</h4><ul>
-<li><p><strong>决策树生成范例</strong></p>
-<blockquote>
-<p>{‘flippers’: {0: ‘no’, 1: {‘no surfacing’: {0: ‘no’, 1: ‘yes’}}}}</p>
-<p>其中每一次决策需要用到决策树的两层</p>
-<p>以这里的决策树为例</p>
-<p>第一层‘flippers’为进行决策的标签</p>
-<p>第二层的0和1为在该标签下进行决策的不同选择</p>
-</blockquote>
-</li>
-<li><p><strong>核心代码</strong></p>
+<ul>
+<li><p>参考：</p>
+<p>1.通俗易懂图示剖析随机森林 <a href="https://blog.csdn.net/cg896406166/article/details/83796557" target="_blank" rel="noopener">https://blog.csdn.net/cg896406166/article/details/83796557</a></p>
 </li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">classifyByTree</span><span class="hljs-params">(tree, labels, data)</span>:</span>
-    <span class="hljs-comment"># 得到进行决策的标签</span>
-    firstLabel = list(tree.keys())[<span class="hljs-number">0</span>]
-    <span class="hljs-comment"># 用该标签进行决策的子树</span>
-    secondDict = tree[firstLabel]
-    <span class="hljs-comment"># 得到用于决策的标签所属的维度，用于后面取出数据在该维度的值</span>
-    firstLabelIndex = labels.index(firstLabel)
-    classLabel = <span class="hljs-string">'Error'</span>
-    <span class="hljs-comment"># 对于该标签下进行决策的不同的值</span>
-    <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> secondDict.keys():
-        <span class="hljs-comment"># 如果数据在该决策标签维度下的值等于子树的决策值</span>
-        <span class="hljs-keyword">if</span> data[firstLabelIndex] == value:
-            <span class="hljs-comment"># 如果子树下还有子树（即还是一个字典类型的数据）则继续进行决策</span>
-            <span class="hljs-keyword">if</span> type(secondDict[value]).__name__ == <span class="hljs-string">'dict'</span>:
-                classLabel = classifyByTree(secondDict[value], labels, data)
-            <span class="hljs-keyword">else</span>:
-                <span class="hljs-comment"># 否则子树下的值就是决策的结果</span>
-                classLabel = secondDict[value]
-    <span class="hljs-keyword">return</span> classLabel</code></pre>
+<p>  2.Gini重要性评估 <a href="https://blog.csdn.net/zjuPeco/article/details/77371645" target="_blank" rel="noopener">https://blog.csdn.net/zjuPeco/article/details/77371645</a></p>
+<p>  3.票选带图示 <a href="https://www.sohu.com/a/234722514_787107" target="_blank" rel="noopener">https://www.sohu.com/a/234722514_787107</a></p>
+<p>  票选 <a href="https://blog.csdn.net/zjuPeco/article/details/77371645" target="_blank" rel="noopener">https://blog.csdn.net/zjuPeco/article/details/77371645</a></p>
+<p>  4.GINI阿里实战：用Python实现随机森林 <a href="https://baijiahao.baidu.com/s?id=1621066120041839448&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1621066120041839448&amp;wfr=spider&amp;for=pc</a></p>
+<p>  5.IForest<a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html" target="_blank" rel="noopener">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html</a></p>
+<p>  RForest<a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html" target="_blank" rel="noopener">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html</a></p>
+<p>  一文看懂RF <a href="https://easyai.tech/ai-definition/random-forest/" target="_blank" rel="noopener">https://easyai.tech/ai-definition/random-forest/</a></p>
 
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                    
-                  </div>
-                
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-                    
-                      <a class="hover-with-bg" href="/tags/python/">python</a>
+                      <a class="hover-with-bg" href="/tags/MachineLearning/">MachineLearning</a>
                     
                   </div>
                 
@@ -348,18 +355,12 @@ H = -\sum_{i=1}^n p(x_i)log_2p(x_i)</script></li>
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/03/15/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E2%80%94observer-Eventbus/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">观察者模式—observer-Eventbus</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/02/21/Note-for-learning-Android/">
-                        <span class="hidden-mobile">Note for learning Android</span>
+                      <a href="/2020/04/19/%E5%AD%97%E8%8A%82%E7%A0%81%E6%8F%92%E6%A1%A9/">
+                        <span class="hidden-mobile">字节码插桩</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -525,7 +526,7 @@ H = -\sum_{i=1}^n p(x_i)log_2p(x_i)</script></li>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "决策树算法&nbsp;",
+        "随机森林RandomForst&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 140,
