@@ -17,7 +17,7 @@
   <meta name="description" content="WangQiuchen&#39;s blog 王秋辰">
   <meta name="author" content="Wang Qiuchen">
   <meta name="keywords" content="blog,life,coding">
-  <title>学习笔记：Machine Learning(4) - WangQiuchen&#39;s blog</title>
+  <title>k-近邻算法 - WangQiuchen&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
@@ -137,8 +137,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2019-12-06 22:01">
-                    2019年12月6日 晚上
+                  <time datetime="2020-05-06 21:14">
+                    2020年5月6日 晚上
                   </time>
                 </div>
               
@@ -148,7 +148,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    165 字
+                    282 字
                   </span>
                 
 
@@ -158,7 +158,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    1
+                    4
                      分钟
                   </span>
                 
@@ -187,18 +187,44 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <ul>
-<li>验证 (Validation)</li>
-<li>表示 (Representation)<a id="more"></a>
-<h1 id="验证-Validation"><a href="#验证-Validation" class="headerlink" title="验证 (Validation)"></a>验证 (Validation)</h1><h2 id="更好的工作流程"><a href="#更好的工作流程" class="headerlink" title="更好的工作流程"></a>更好的工作流程</h2></li>
-<li><img src="https://developers.google.cn/machine-learning/crash-course/images/WorkflowWithValidationSet.svg" srcset="/img/loading.gif" alt></li>
-<li>在这一经过改进的工作流程中：<ul>
-<li>选择在验证集上获得最佳效果的模型。</li>
-<li>使用测试集再次检查该模型。</li>
-<li>该工作流程之所以更好，原因在于它暴露给测试集的信息更少。<h1 id="表示-Representation"><a href="#表示-Representation" class="headerlink" title="表示 (Representation)"></a>表示 (Representation)</h1><h2 id="数据表示"><a href="#数据表示" class="headerlink" title="数据表示"></a>数据表示</h2></li>
+              <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>采用测量不同特征值之间的距离方法进行分类</li>
+<li>优点：精度高、异常值不敏感、无数据输入假定</li>
+<li>缺点：复杂度高</li>
+<li>适用：数值型、标称型</li>
 </ul>
-</li>
-<li>机器学习模型不能直接看到、听到或感知输入样本。您必须创建数据表示，为模型提供有用的信号来了解数据的关键特性。也就是说，为了训练模型，您必须选择最能代表数据的特征集。</li>
+<h2 id="准备与实现"><a href="#准备与实现" class="headerlink" title="准备与实现"></a>准备与实现</h2><ul>
+<li>```python<h1 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h1>def createDataSet():<pre><code>group = array([[1.0,1.1],[1.0,1.0],[0,0],[0,0.1]])
+labels = [&#39;A&#39;,&#39;A&#39;,&#39;B&#39;,&#39;B&#39;]
+return group, labels
+</code></pre><pre><code class="hljs plain">
+- kNN步骤
+
+  - 计算已知类别数据集中点和当前点的距离
+  - 按照距离递增次序排列
+  - 选取与当前点距离最小的k个点
+  - 确定前k个点所在类别的出现频率
+  - 返回出现最高的类别作为当前类别
+
+- &#96;&#96;&#96;python
+  # kNN
+  def classify0(inX, dataSet, labels, k):
+      dataSetSize &#x3D; dataSet.shape[0]
+      # 计算距离
+      diffMat &#x3D; tile(inX, (dataSetSize,1)) - dataSet
+      sqDiffMat &#x3D; diffMat**2
+      sqDistances &#x3D; sqDiffMat.sum(axis&#x3D;1) #欧式距离公式
+      distances &#x3D; sqDistances**0.5
+      sortedDistIndicies &#x3D; distances.argsort() #返回排序索引
+      # 选择距离最小的点
+      classCount&#x3D;&#123;&#125;          
+      for i in range(k):
+          voteIlabel &#x3D; labels[sortedDistIndicies[i]]
+          classCount[voteIlabel] &#x3D; classCount.get(voteIlabel,0) + 1
+      # 排序
+      sortedClassCount &#x3D; sorted(classCount.items(), key&#x3D;operator.itemgetter(1), reverse&#x3D;True)
+      #返回类
+      return sortedClassCount[0][0]</code></pre></li>
 </ul>
 
             </article>
@@ -206,26 +232,6 @@
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-                    
-                      <a class="hover-with-bg" href="/tags/machine-learning/">machine learning</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
-                    
-                      <a class="hover-with-bg" href="/tags/python/">python</a>
-                    
-                  </div>
                 
               </div>
               
@@ -236,9 +242,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2019/12/17/c%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88%E7%9A%84%E5%BA%94%E7%94%A8/">
+                      <a href="/2020/05/15/%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97RandomForst/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">c语言指针的应用</span>
+                        <span class="hidden-mobile">随机森林RandomForst</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -246,8 +252,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2019/12/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AMachine-Learning-3/">
-                        <span class="hidden-mobile">学习笔记：Machine Learning(3)</span>
+                      <a href="/2020/04/19/%E5%AD%97%E8%8A%82%E7%A0%81%E6%8F%92%E6%A1%A9/">
+                        <span class="hidden-mobile">字节码插桩</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -413,7 +419,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "学习笔记：Machine Learning(4)&nbsp;",
+        "k-近邻算法&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 140,
