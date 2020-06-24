@@ -265,8 +265,17 @@ class RandomForest():
 适用：数值型、标称型
 
 准备与实现
-```python测试数据def createDataSet():group = array([[1.0,1.1],[1.0,1.0],[0,0],[0,0.1]])
-labels = [&#39;A&#39;,&#39;A&#39;,&#39;B&#39</div>
+kNN步骤
+
+计算已知类别数据集中点和当前点的距离
+按照距离递增次序排列
+选取与当前点距离最小的k个点
+确定前k个点所在类别的出现频率
+返回出现最高的类别作为当前类别
+
+
+# kNN
+def classify0(inX, dataSet, labels, </div>
       </a>
 
       <div class="index-btm post-metas">
