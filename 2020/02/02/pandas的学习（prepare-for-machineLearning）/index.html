@@ -17,7 +17,7 @@
   <meta name="description" content="WangQiuchen&#39;s blog 王秋辰">
   <meta name="author" content="Wang Qiuchen">
   <meta name="keywords" content="blog,life,coding">
-  <title>pandas的学习（prepare for machineLearning） - WangQiuchen&#39;s blog</title>
+  <title>环境搭建、python基础语法笔记 - WangQiuchen&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
@@ -187,9 +187,9 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="preparing-and-install"><a href="#preparing-and-install" class="headerlink" title="preparing and install"></a>preparing and install</h1><h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><ul>
+              <h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><ul>
 <li>安装tensorFlow和jupyter断断续续折腾了尽一个月，一开始一直报错原来是因为虚拟环境初始化为了python2.7（并不是最初认为的tensorFlow无3.7版本），tensorflow2.0对于python3.7已经支持。原来最好的安装方法是：python3.7虚拟环境+国内镜像tensorFlow+pip安装jupyter_notebook。</li>
-<li>anaconda-Navigator的GUI界面安装也是一个不错的选择，对于import python包确实方便；缺点就是不知如何改为国内源，速度不快。<h2 id="some-notes"><a href="#some-notes" class="headerlink" title="some notes"></a>some notes</h2><h3 id="lambda"><a href="#lambda" class="headerlink" title="lambda:"></a>lambda:</h3></li>
+<li>anaconda-Navigator的GUI界面安装也是一个不错的选择，对于import python包确实方便；缺点就是不知如何改为国内源，速度不快。<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><h3 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h3></li>
 <li><ul>
 <li>1）def创建的方法是有名称的，而lambda没有。</li>
 <li>2）lambda会返回一个函数对象，但这个对象不会赋给一个标识符，而def则会把函数对象赋值给一个变量（函数名）。</li>
@@ -216,22 +216,15 @@
 8
 </code></pre></li>
 <li><p>上块存疑</p>
-<h3 id="map："><a href="#map：" class="headerlink" title="map："></a>map：</h3><pre><code class="hljs plain">map(fun, iter)</code></pre>
-<pre><code># Return double of n 
-def addition(n): 
-    return n + n 
-
-# We double all numbers using map() 
-numbers = (1, 2, 3, 4) 
-result = map(addition, numbers) 
-print(list(result)) 
-</code></pre></li>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>map(fun, iter)</p>
+<h1 id="Return-double-of-n"><a href="#Return-double-of-n" class="headerlink" title="Return double of n"></a>Return double of n</h1><p>def addition(n):<br>return n + n </p>
+<h1 id="We-double-all-numbers-using-map"><a href="#We-double-all-numbers-using-map" class="headerlink" title="We double all numbers using map()"></a>We double all numbers using map()</h1><p>numbers = (1, 2, 3, 4)<br>result = map(addition, numbers)<br>print(list(result)) </p>
+<p>output:<br>{2, 4, 6, 8}</p>
+</li>
 </ul>
 </li>
 </ul>
-<p>output:</p>
-<pre><code>    {2, 4, 6, 8}
-</code></pre><h3 id><a href="#" class="headerlink" title=" "></a> </h3>
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3>
             </article>
             <hr>
             <div>
@@ -240,7 +233,7 @@ print(list(result))
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+                      <a class="hover-with-bg" href="/categories/python/">python</a>
                     
                   </div>
                 
@@ -446,7 +439,7 @@ print(list(result))
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "pandas的学习（prepare for machineLearning）&nbsp;",
+        "环境搭建、python基础语法笔记&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 140,
