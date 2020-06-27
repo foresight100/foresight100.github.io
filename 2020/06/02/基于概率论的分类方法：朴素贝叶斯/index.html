@@ -158,7 +158,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    14
+                    15
                      分钟
                   </span>
                 
@@ -237,6 +237,11 @@
 <ul>
 <li><strong>训练算法</strong>：朴素贝叶斯分类器</li>
 </ul>
+<pre><code class="hljs python">训练算法：
+构建出词汇表
+统计每种文档中出现的词语的数目，记录在词汇表向量中
+对每个类别，分别统计每个词出现在该类别中的频率
+对每个类别，出现在该类别概率大的就认定为这个词是该类的</code></pre>
 <pre><code class="hljs python"><span class="hljs-comment"># 传入对于每个句子的词汇表是否存在的向量，向量和词汇表一样长；以及标记的句子是否含侮辱性词汇</span>
  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trainNB0</span><span class="hljs-params">(trainMatrix,trainCategory)</span>:</span>
    <span class="hljs-comment"># 句子个数</span>
