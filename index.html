@@ -206,6 +206,56 @@ Bayes准则
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/05/20/k-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/">k-近邻算法</a>
+
+      <a href="/2020/05/20/k-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/" class="index-excerpt">
+        
+        
+          
+        
+        <div>概述
+采用测量不同特征值之间的距离方法进行分类
+优点：精度高、异常值不敏感、无数据输入假定
+缺点：复杂度高
+适用：数值型、标称型
+
+准备与实现
+kNN步骤
+
+计算已知类别数据集中点和当前点的距离
+按照距离递增次序排列
+选取与当前点距离最小的k个点
+确定前k个点所在类别的出现频率
+返回出现最高的类别作为当前类别
+
+
+# kNN
+def classify0(inX, dataSet, labels, </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-05-20
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/MachineLearningInAction/">MachineLearningInAction</a>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/05/18/retrofit/">retrofit</a>
 
       <a href="/2020/05/18/retrofit/" class="index-excerpt">
@@ -286,56 +336,6 @@ class RandomForest():
               <a href="/tags/MachineLearning/">MachineLearning</a>
             
           </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/05/06/k-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/">k-近邻算法</a>
-
-      <a href="/2020/05/06/k-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/" class="index-excerpt">
-        
-        
-          
-        
-        <div>概述
-采用测量不同特征值之间的距离方法进行分类
-优点：精度高、异常值不敏感、无数据输入假定
-缺点：复杂度高
-适用：数值型、标称型
-
-准备与实现
-kNN步骤
-
-计算已知类别数据集中点和当前点的距离
-按照距离递增次序排列
-选取与当前点距离最小的k个点
-确定前k个点所在类别的出现频率
-返回出现最高的类别作为当前类别
-
-
-# kNN
-def classify0(inX, dataSet, labels, </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-05-06
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/MachineLearningInAction/">MachineLearningInAction</a>
-            
-          </div>
-        
         
       </div>
     </div>

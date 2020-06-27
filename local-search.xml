@@ -23,6 +23,25 @@
   
   
   <entry>
+    <title>k-近邻算法</title>
+    <link href="/2020/05/20/k-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/"/>
+    <url>/2020/05/20/k-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul><li>采用测量不同特征值之间的距离方法进行分类</li><li>优点：精度高、异常值不敏感、无数据输入假定</li><li>缺点：复杂度高</li><li>适用：数值型、标称型</li></ul><h2 id="准备与实现"><a href="#准备与实现" class="headerlink" title="准备与实现"></a>准备与实现</h2><ul><li><p>kNN步骤</p><ul><li>计算已知类别数据集中点和当前点的距离</li><li>按照距离递增次序排列</li><li>选取与当前点距离最小的k个点</li><li>确定前k个点所在类别的出现频率</li><li>返回出现最高的类别作为当前类别</li></ul></li><li><pre><code class="lang-python"># kNNdef classify0(inX, dataSet, labels, k):    dataSetSize = dataSet.shape[0]    # 计算距离    diffMat = tile(inX, (dataSetSize,1)) - dataSet    sqDiffMat = diffMat**2    sqDistances = sqDiffMat.sum(axis=1) #欧式距离公式    distances = sqDistances**0.5    sortedDistIndicies = distances.argsort() #返回排序索引    # 选择距离最小的点    classCount={}              for i in range(k):        voteIlabel = labels[sortedDistIndicies[i]]        classCount[voteIlabel] = classCount.get(voteIlabel,0) + 1    # 排序    sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)    #返回类    return sortedClassCount[0][0]</code></pre></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>MachineLearningInAction</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>retrofit</title>
     <link href="/2020/05/18/retrofit/"/>
     <url>/2020/05/18/retrofit/</url>
@@ -55,25 +74,6 @@
       <tag>MachineLearning</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>k-近邻算法</title>
-    <link href="/2020/05/06/k-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/"/>
-    <url>/2020/05/06/k-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95/</url>
-    
-    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul><li>采用测量不同特征值之间的距离方法进行分类</li><li>优点：精度高、异常值不敏感、无数据输入假定</li><li>缺点：复杂度高</li><li>适用：数值型、标称型</li></ul><h2 id="准备与实现"><a href="#准备与实现" class="headerlink" title="准备与实现"></a>准备与实现</h2><ul><li><p>kNN步骤</p><ul><li>计算已知类别数据集中点和当前点的距离</li><li>按照距离递增次序排列</li><li>选取与当前点距离最小的k个点</li><li>确定前k个点所在类别的出现频率</li><li>返回出现最高的类别作为当前类别</li></ul></li><li><pre><code class="lang-python"># kNNdef classify0(inX, dataSet, labels, k):    dataSetSize = dataSet.shape[0]    # 计算距离    diffMat = tile(inX, (dataSetSize,1)) - dataSet    sqDiffMat = diffMat**2    sqDistances = sqDiffMat.sum(axis=1) #欧式距离公式    distances = sqDistances**0.5    sortedDistIndicies = distances.argsort() #返回排序索引    # 选择距离最小的点    classCount={}              for i in range(k):        voteIlabel = labels[sortedDistIndicies[i]]        classCount[voteIlabel] = classCount.get(voteIlabel,0) + 1    # 排序    sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)    #返回类    return sortedClassCount[0][0]</code></pre></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>MachineLearningInAction</category>
-      
-    </categories>
-    
     
   </entry>
   
