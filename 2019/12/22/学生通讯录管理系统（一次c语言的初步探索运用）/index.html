@@ -1687,7 +1687,7 @@ J--&gt;输入学生邮箱--&gt;send</code></pre>
       menu();
       exit(1);
   }
-</code></pre><p>​<br>​      void sendto(char *email)<br>​      {<br>​          printf(“1”);<br>​          char body[] = “From: \”lucy\”<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#49;&#49;&#57;&#x34;&#x37;&#x39;&#56;&#49;&#x36;&#x30;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;">&#49;&#49;&#57;&#x34;&#x37;&#x39;&#56;&#49;&#x36;&#x30;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;</a>\r\n”//这是我自己的邮箱<br>​          “To: \”dasiy\”<a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#x31;&#x31;&#x39;&#x34;&#x37;&#x39;&#x38;&#49;&#54;&#48;&#x40;&#x71;&#113;&#46;&#x63;&#111;&#x6d;">&#x31;&#x31;&#x39;&#x34;&#x37;&#x39;&#x38;&#49;&#54;&#48;&#x40;&#x71;&#113;&#46;&#x63;&#111;&#x6d;</a>\r\n”//也是我自己的<br>​          “Subject: caution\r\n\r\n”//主题<br>​          “Fail the test”;//内容<br>​          sendemail(email, body);<br>​      }<br>​<br>      char con628(char c6)<br>      {<br>          printf(“1”);<br>          char rtn = ‘\0’;<br>          if (c6 &lt; 26) rtn = c6 + 65;<br>          else if (c6 &lt; 52) rtn = c6 + 71;<br>          else if (c6 &lt; 62) rtn = c6 - 4;<br>          else if (c6 == 62) rtn = 43;<br>          else rtn = 47;<br>          return rtn;<br>      }</p>
+</code></pre><p>​<br>​      void sendto(char *email)<br>​      {<br>​          printf(“1”);<br>​          char body[] = “From: \”lucy\”<a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#49;&#49;&#x39;&#x34;&#x37;&#57;&#56;&#49;&#x36;&#48;&#x40;&#x71;&#x71;&#x2e;&#x63;&#111;&#109;">&#49;&#49;&#x39;&#x34;&#x37;&#57;&#56;&#49;&#x36;&#48;&#x40;&#x71;&#x71;&#x2e;&#x63;&#111;&#109;</a>\r\n”//这是我自己的邮箱<br>​          “To: \”dasiy\”<a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#49;&#x31;&#x39;&#x34;&#x37;&#57;&#x38;&#x31;&#x36;&#48;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#49;&#x31;&#x39;&#x34;&#x37;&#57;&#x38;&#x31;&#x36;&#48;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a>\r\n”//也是我自己的<br>​          “Subject: caution\r\n\r\n”//主题<br>​          “Fail the test”;//内容<br>​          sendemail(email, body);<br>​      }<br>​<br>      char con628(char c6)<br>      {<br>          printf(“1”);<br>          char rtn = ‘\0’;<br>          if (c6 &lt; 26) rtn = c6 + 65;<br>          else if (c6 &lt; 52) rtn = c6 + 71;<br>          else if (c6 &lt; 62) rtn = c6 - 4;<br>          else if (c6 == 62) rtn = 43;<br>          else rtn = 47;<br>          return rtn;<br>      }</p>
 <pre><code>  // base64的实现
   void base64(char *dbuf, char *buf128, int len)
   {
@@ -2199,7 +2199,7 @@ J--&gt;输入学生邮箱--&gt;send</code></pre>
   <script  src="https://cdn.staticfile.org/mermaid/8.5.0/mermaid.min.js" ></script>
   <script>
     if (window.mermaid) {
-      mermaid.initialize({"theme":"Flow"});
+      mermaid.initialize({"theme":"default"});
     }
   </script>
 
