@@ -239,6 +239,10 @@ re.search(pattern, string, flags=<span class="hljs-number">0</span>)
 re.compile(pattern[, flags])
 <span class="hljs-comment"># pattern:一个字符串形式的正则表达式</span>
 <span class="hljs-comment"># flags:可选，表示匹配模式</span></code></pre>
+<h3 id="range"><a href="#range" class="headerlink" title="range"></a>range</h3><pre><code class="hljs python"><span class="hljs-comment"># python3.x , 出现错误 'range' object doesn't support item deletion</span>
+<span class="hljs-comment"># 原因：python3.x   range返回的是range对象，不返回数组对象</span>
+
+<span class="hljs-comment"># 把 trainingSet = range(50) 改为 trainingSet = list(range(50))</span></code></pre>
 
             </article>
             <hr>

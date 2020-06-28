@@ -261,13 +261,12 @@
    p0Vect = log(p0Num/p0Denom)          <span class="hljs-comment">#change to log()</span>
    <span class="hljs-keyword">return</span> p0Vect,p1Vect,pAbusive
  <span class="hljs-comment"># 可以大致知道哪一个词为侮辱性词</span></code></pre>
-<ul>
-<li><strong>测试算法</strong></li>
-</ul>
-<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">classifyNB</span><span class="hljs-params">(vec2Classify, p0Vec, p1Vec, pClass1)</span>:</span>
+<pre><code class="hljs python"><span class="hljs-comment"># 基于贝叶斯决策论</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">classifyNB</span><span class="hljs-params">(vec2Classify, p0Vec, p1Vec, pClass1)</span>:</span>
   <span class="hljs-comment"># 乘法是对应位置元素相乘</span>
   <span class="hljs-comment"># 做过乘法后将每个元素相加加到该类别的对数概率上</span>
-    p1 = sum(vec2Classify * p1Vec) + log(pClass1)
+  <span class="hljs-comment"># p1Vec和p2Vec已经做过求log()</span>
+    p1 = sum(vec2Classify * p1Vec) + log(pClass1)<span class="hljs-comment"># 条件概率，pClass1可以看作“前提条件”</span>
     p0 = sum(vec2Classify * p0Vec) + log(<span class="hljs-number">1.0</span> - pClass1)
  
     <span class="hljs-comment"># 依据贝叶斯决策论返回结果</span>
@@ -275,6 +274,9 @@
         <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
     <span class="hljs-keyword">else</span>: 
         <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></code></pre>
+<ul>
+<li><strong>测试算法</strong></li>
+</ul>
 <pre><code class="hljs python"><span class="hljs-comment"># 封装好的测试算法</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">testingNB</span><span class="hljs-params">()</span>:</span>
   	<span class="hljs-comment"># 构造训练集</span>
@@ -320,40 +322,74 @@ output:
     listOfTokens = re.split(<span class="hljs-string">r'\W'</span>, bigString) <span class="hljs-comment"># 源书本上代码误为\W*</span>
     <span class="hljs-comment"># 将长度大于二的留下并小写</span>
     <span class="hljs-keyword">return</span> [tok.lower() <span class="hljs-keyword">for</span> tok <span class="hljs-keyword">in</span> listOfTokens <span class="hljs-keyword">if</span> len(tok) &gt; <span class="hljs-number">2</span>]</code></pre>
+<pre><code class="hljs python"><span class="hljs-comment"># 词袋模型，查看生成向量，input内单词出现几次</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bagOfWords2VecMN</span><span class="hljs-params">(vocabList, inputSet)</span>:</span>
+    returnVec = [<span class="hljs-number">0</span>]*len(vocabList)
+    <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> inputSet:
+        <span class="hljs-keyword">if</span> word <span class="hljs-keyword">in</span> vocabList:
+            returnVec[vocabList.index(word)] += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> returnVec</code></pre>
 <ul>
 <li>测试算法</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">spamTest</span><span class="hljs-params">()</span>:</span>
-  	<span class="hljs-comment"># </span>
+  	<span class="hljs-comment"># 每封邮件的词汇表，一封邮件一行</span>
+    <span class="hljs-comment"># 按顺序，是否为垃圾邮件，和词汇表中邮件的排列一致</span>
+    <span class="hljs-comment"># 所有邮件的词汇表汇总，但是有重复，只是简单的append</span>
     docList=[]; classList = []; fullText =[]
+    <span class="hljs-comment"># 对于垃圾邮件和一般邮件</span>
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,<span class="hljs-number">26</span>):
+      	<span class="hljs-comment"># 对于垃圾邮件</span>
         wordList = textParse(open(<span class="hljs-string">'email/spam/%d.txt'</span> % i).read())
         docList.append(wordList)
         fullText.extend(wordList)
         classList.append(<span class="hljs-number">1</span>)
+        <span class="hljs-comment"># 对于一般邮件</span>
         wordList = textParse(open(<span class="hljs-string">'email/ham/%d.txt'</span> % i).read())
         docList.append(wordList)
         fullText.extend(wordList)
         classList.append(<span class="hljs-number">0</span>)
-    vocabList = createVocabList(docList)<span class="hljs-comment">#create vocabulary</span>
-    trainingSet = range(<span class="hljs-number">50</span>); testSet=[]           <span class="hljs-comment">#create test set</span>
+    <span class="hljs-comment"># 创建所有邮件的词汇表，也就是求并集，单词不重复</span>
+    vocabList = createVocabList(docList)
+    <span class="hljs-comment"># 创建测试集,pyhton3.0</span>
+    trainingSet = list(range(<span class="hljs-number">50</span>)); testSet=[]
+    <span class="hljs-comment"># 随机生成测试集索引，并设置训练集索引</span>
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
         randIndex = int(random.uniform(<span class="hljs-number">0</span>,len(trainingSet)))
         testSet.append(trainingSet[randIndex])
         <span class="hljs-keyword">del</span>(trainingSet[randIndex])  
+    <span class="hljs-comment"># 训练集词袋矩阵，训练集中每个词袋的对应的邮件的种类</span>
     trainMat=[]; trainClasses = []
-    <span class="hljs-keyword">for</span> docIndex <span class="hljs-keyword">in</span> trainingSet:<span class="hljs-comment">#train the classifier (get probs) trainNB0</span>
-        trainMat.append(bagOfWords2VecMN(vocabList, docList[docIndex]))
-        trainClasses.append(classList[docIndex])
+    <span class="hljs-comment"># 生成训练集</span>
+    <span class="hljs-keyword">for</span> docIndex <span class="hljs-keyword">in</span> trainingSet:
+    		trainMat.append(bagOfWords2VecMN(vocabList,docList[docIndex]))
+    		trainClasses.append(classList[docIndex])
+    <span class="hljs-comment"># 训练模型</span>
     p0V,p1V,pSpam = trainNB0(array(trainMat),array(trainClasses))
+    <span class="hljs-comment"># 测试</span>
     errorCount = <span class="hljs-number">0</span>
-    <span class="hljs-keyword">for</span> docIndex <span class="hljs-keyword">in</span> testSet:        <span class="hljs-comment">#classify the remaining items</span>
+    <span class="hljs-keyword">for</span> docIndex <span class="hljs-keyword">in</span> testSet:
+        <span class="hljs-comment"># 测试集的词袋矩阵</span>
         wordVector = bagOfWords2VecMN(vocabList, docList[docIndex])
         <span class="hljs-keyword">if</span> classifyNB(array(wordVector),p0V,p1V,pSpam) != classList[docIndex]:
             errorCount += <span class="hljs-number">1</span>
             <span class="hljs-keyword">print</span> (<span class="hljs-string">"classification error"</span>,docList[docIndex])
     <span class="hljs-keyword">print</span> (<span class="hljs-string">'the error rate is: '</span>,float(errorCount)/len(testSet))
-    <span class="hljs-comment">#return vocabList,fullText</span></code></pre>
+    <span class="hljs-keyword">return</span> vocabList,fullText
+  
+<span class="hljs-comment"># 基于贝叶斯决策论</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">classifyNB</span><span class="hljs-params">(vec2Classify, p0Vec, p1Vec, pClass1)</span>:</span>
+  <span class="hljs-comment"># 乘法是对应位置元素相乘</span>
+  <span class="hljs-comment"># 做过乘法后将每个元素相加加到该类别的对数概率上</span>
+  <span class="hljs-comment"># p1Vec和p2Vec已经做过求log()</span>
+  <span class="hljs-comment"># p1Vec的一个元表示的意义是垃圾文件中每个词出现的概率</span>
+    p1 = sum(vec2Classify * p1Vec) + log(pClass1)<span class="hljs-comment"># 条件概率，pClass1可以看作“前提条件”</span>
+    p0 = sum(vec2Classify * p0Vec) + log(<span class="hljs-number">1.0</span> - pClass1)
+    <span class="hljs-comment"># 依据贝叶斯决策论返回结果</span>
+    <span class="hljs-keyword">if</span> p1 &gt; p0:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+    <span class="hljs-keyword">else</span>: 
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></code></pre>
 
             </article>
             <hr>
