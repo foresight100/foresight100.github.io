@@ -204,9 +204,46 @@
 <span class="hljs-code">			计算整个数据集的梯度</span>
 <span class="hljs-code">			alpha * gradient更新回归系数向量</span>
 <span class="hljs-code">	返回回归系数</span></code></pre>
-<pre><code class="hljs python">
-</code></pre>
-
+<pre><code class="hljs python"><span class="hljs-comment"># 打开训练集</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">loadDataSet</span><span class="hljs-params">()</span>:</span>
+  	<span class="hljs-comment"># 数据矩阵，标签矩阵</span>
+    dataMat = []; labelMat = []
+    <span class="hljs-comment"># 数据文件</span>
+    <span class="hljs-comment"># x1 x2 label</span>
+    <span class="hljs-comment"># -0.017612	14.053064	0</span>
+    fr = open(<span class="hljs-string">'testSet.txt'</span>)
+    <span class="hljs-comment"># 对于数据集中的每一个点</span>
+    <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> fr.readlines():
+        lineArr = line.strip().split()
+        dataMat.append([<span class="hljs-number">1.0</span>, float(lineArr[<span class="hljs-number">0</span>]), float(lineArr[<span class="hljs-number">1</span>])])
+        labelMat.append(int(lineArr[<span class="hljs-number">2</span>]))
+    <span class="hljs-keyword">return</span> dataMat,labelMat</code></pre>
+<pre><code class="hljs python"><span class="hljs-comment"># Sigmoid函数</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sigmoid</span><span class="hljs-params">(inX)</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>/(<span class="hljs-number">1</span>+exp(-inX))</code></pre>
+<pre><code class="hljs python"><span class="hljs-comment"># 求最佳回归系数</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gradAscent</span><span class="hljs-params">(dataMatIn, classLabels)</span>:</span>
+  	<span class="hljs-comment"># 转换为Numpy矩阵</span>
+    dataMatrix = mat(dataMatIn)   
+    <span class="hljs-comment"># 转置Label向量（由行向量转置为列向量）</span>
+    labelMat = mat(classLabels).transpose()
+    m,n = shape(dataMatrix)
+    <span class="hljs-comment"># 步长</span>
+    alpha = <span class="hljs-number">0.001</span>
+    <span class="hljs-comment"># 迭代次数</span>
+    maxCycles = <span class="hljs-number">500</span>
+    <span class="hljs-comment"># 初始化系数全部为单位矩阵</span>
+    weights = ones((n,<span class="hljs-number">1</span>))
+    <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(maxCycles):              <span class="hljs-comment">#heavy on matrix operations</span>
+      
+        h = sigmoid(dataMatrix*weights)     <span class="hljs-comment">#matrix mult，返回列向量</span>
+        error = (labelMat - h)              <span class="hljs-comment">#vector subtraction 求损失</span>
+        <span class="hljs-comment"># 定性地说，这里其实就是计算真实类别和预测类别的差值，按照该差值的方向调整回归函数</span>
+        
+        weights = weights + alpha * dataMatrix.transpose()* error <span class="hljs-comment">#matrix mult 迭代</span>
+        <span class="hljs-comment"># 运用梯度的思想，但其实计算起来并不是需要梯度</span>
+    <span class="hljs-keyword">return</span> weights</code></pre>
+<h3 id="分析数据：画出决策边界"><a href="#分析数据：画出决策边界" class="headerlink" title="分析数据：画出决策边界"></a>分析数据：画出决策边界</h3>
             </article>
             <hr>
             <div>
