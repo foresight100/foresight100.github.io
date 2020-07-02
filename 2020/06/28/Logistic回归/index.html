@@ -243,7 +243,30 @@
         weights = weights + alpha * dataMatrix.transpose()* error <span class="hljs-comment">#matrix mult 迭代</span>
         <span class="hljs-comment"># 运用梯度的思想，但其实计算起来并不是需要梯度</span>
     <span class="hljs-keyword">return</span> weights</code></pre>
-<h3 id="分析数据：画出决策边界"><a href="#分析数据：画出决策边界" class="headerlink" title="分析数据：画出决策边界"></a>分析数据：画出决策边界</h3>
+<h3 id="分析数据：画出决策边界"><a href="#分析数据：画出决策边界" class="headerlink" title="分析数据：画出决策边界"></a>分析数据：画出决策边界</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">plotBestFit</span><span class="hljs-params">(weights)</span>:</span>
+    <span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+    dataMat,labelMat=loadDataSet()
+    dataArr = array(dataMat)
+    n = shape(dataArr)[<span class="hljs-number">0</span>] 
+    xcord1 = []; ycord1 = []
+    xcord2 = []; ycord2 = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n):
+        <span class="hljs-keyword">if</span> int(labelMat[i])== <span class="hljs-number">1</span>:
+            xcord1.append(dataArr[i,<span class="hljs-number">1</span>]); ycord1.append(dataArr[i,<span class="hljs-number">2</span>])
+        <span class="hljs-keyword">else</span>:
+            xcord2.append(dataArr[i,<span class="hljs-number">1</span>]); ycord2.append(dataArr[i,<span class="hljs-number">2</span>])
+    fig = plt.figure()
+    ax = fig.add_subplot(<span class="hljs-number">111</span>)
+    ax.scatter(xcord1, ycord1, s=<span class="hljs-number">30</span>, c=<span class="hljs-string">'red'</span>, marker=<span class="hljs-string">'s'</span>)
+    ax.scatter(xcord2, ycord2, s=<span class="hljs-number">30</span>, c=<span class="hljs-string">'green'</span>)
+    <span class="hljs-comment"># python3</span>
+    x = [arange(<span class="hljs-number">-3.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">0.1</span>)]
+    y = (-weights[<span class="hljs-number">0</span>]-weights[<span class="hljs-number">1</span>]*x)/weights[<span class="hljs-number">2</span>]
+    ax.plot(x, y)
+    plt.xlabel(<span class="hljs-string">'X1'</span>); plt.ylabel(<span class="hljs-string">'X2'</span>);
+    plt.show()</code></pre>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggcqc6ag3bj30ay07at90.jpg" srcset="/img/loading.gif" alt></p>
+
             </article>
             <hr>
             <div>
@@ -263,6 +286,12 @@
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/07/02/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">支持向量机</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">
