@@ -17,7 +17,7 @@
   <meta name="description" content="WangQiuchen&#39;s blog 王秋辰">
   <meta name="author" content="Wang Qiuchen">
   <meta name="keywords" content="blog,life,coding">
-  <title>支持向量机 - WangQiuchen&#39;s blog</title>
+  <title>kMeans初步实现-基于iris数据集 - WangQiuchen&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
@@ -137,8 +137,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-07-02 16:27">
-                    2020年7月2日 下午
+                  <time datetime="2020-07-08 01:39">
+                    2020年7月8日 凌晨
                   </time>
                 </div>
               
@@ -172,7 +172,127 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              
+              <p>UniqueStudio-AISummerCamp</p>
+<a id="more"></a>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> collections
+<span class="hljs-comment"># 随机选择K个中心点</span>
+<span class="hljs-comment"># 把每个数据点分配到离它最近的中心点</span>
+<span class="hljs-comment"># 重新计算每类中的点到该类中心点距离的平均值</span>
+<span class="hljs-comment"># 分配每个数据到它最近的中心点；</span>
+<span class="hljs-comment"># 重复步骤3和4，直到所有的观测值不再被分配或是达到最大的迭代次数</span>
+
+
+<span class="hljs-comment"># 载入数据</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">loadData</span><span class="hljs-params">()</span>:</span>
+    iris = pd.read_csv(<span class="hljs-string">"../iris.csv"</span>,header=<span class="hljs-literal">None</span>)
+    k = len(iris[<span class="hljs-number">4</span>].value_counts())
+    lables = iris.iloc[:,<span class="hljs-number">4</span>:].values.tolist()
+    dataMat = np.array(iris.iloc[:,<span class="hljs-number">0</span>:<span class="hljs-number">4</span>].values.tolist())
+    <span class="hljs-keyword">return</span> k,dataMat,lables
+
+
+<span class="hljs-comment"># # 欧式距离</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">distance</span><span class="hljs-params">(mat1,mat2)</span>:</span>
+    <span class="hljs-keyword">return</span> np.sqrt(sum((mat1-mat2)**<span class="hljs-number">2</span>))
+<span class="hljs-comment"># def distance(mat1,mat2):</span>
+<span class="hljs-comment">#     diffMat = mat1 - mat2</span>
+<span class="hljs-comment">#     sqDiffMat = diffMat**2</span>
+<span class="hljs-comment">#     sqDistance = sqDiffMat.sum(axis = 1)</span>
+<span class="hljs-comment">#     distance = sqDistance**0.5</span>
+<span class="hljs-comment">#     return distance</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">randomPoint</span><span class="hljs-params">(k,dataMat)</span>:</span>
+    randomPointList = random.sample(range(<span class="hljs-number">0</span>,<span class="hljs-number">150</span>), k)
+    point = np.zeros( (k,<span class="hljs-number">4</span>) )
+    index = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> randomPointList:
+        point[index] = dataMat[i]
+        index+=<span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> point,randomPointList
+
+<span class="hljs-comment"># 簇个数，数据集，最大迭代次数</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">kMeans</span><span class="hljs-params">(maxTimes)</span>:</span>
+    <span class="hljs-comment"># 载入数据</span>
+    k,dataMat,lables = loadData()
+    <span class="hljs-comment"># 数据集长度</span>
+    length = dataMat.shape[<span class="hljs-number">0</span>]
+    <span class="hljs-comment"># 随机产生的最开始的点</span>
+    point,cPoints = randomPoint(k,dataMat)
+    <span class="hljs-comment"># 第一次分配</span>
+    classes = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,k):
+        classes.append([])
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,length):
+        <span class="hljs-keyword">if</span>( i <span class="hljs-keyword">in</span> cPoints):
+            <span class="hljs-keyword">continue</span> 
+        distanceList = []
+        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> cPoints:
+            distanceList.append(distance(dataMat[i],dataMat[x]))
+            max_index = distanceList.index(min(distanceList))
+        classes[max_index].append(i)
+    
+    
+    <span class="hljs-comment"># 迭代次数</span>
+    count = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">while</span>(count &lt; maxTimes):
+        pointTemp = np.zeros( (k,<span class="hljs-number">4</span>) )
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>):
+            <span class="hljs-keyword">for</span> index <span class="hljs-keyword">in</span> classes[i]:
+                pointTemp[i] += dataMat[index]
+            classlength = float(len(classes[i]))
+            pointTemp[i]/=classlength
+            
+        classes = []
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,k):
+            classes.append([])
+            
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,length):
+            distanceList = []
+            <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> pointTemp:
+                distanceList.append(distance(dataMat[i],x))
+                max_index = distanceList.index(min(distanceList))
+            classes[max_index].append(i)
+
+            
+        <span class="hljs-comment"># 如果收敛</span>
+        <span class="hljs-keyword">if</span>((pointTemp == point).all()):
+            <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">else</span>:
+            point = pointTemp
+            count+=<span class="hljs-number">1</span>
+            
+            
+            
+    <span class="hljs-comment"># 票选出最终结果</span>
+    result = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>):
+        frequency = &#123;&#125;
+        <span class="hljs-keyword">for</span> index <span class="hljs-keyword">in</span> classes[i]:
+            <span class="hljs-keyword">if</span> lables[index][<span class="hljs-number">0</span>] <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> frequency:
+                frequency[lables[index][<span class="hljs-number">0</span>]] = <span class="hljs-number">1</span>
+            <span class="hljs-keyword">else</span>:
+                frequency[lables[index][<span class="hljs-number">0</span>]] += <span class="hljs-number">1</span>
+        result.append(max(frequency,key=frequency.get))
+    
+    <span class="hljs-keyword">return</span> result,count,classes,lables
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test</span><span class="hljs-params">(result,classes,k,lables)</span>:</span>
+    error = <span class="hljs-number">0</span> 
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,k):
+        <span class="hljs-keyword">for</span> index <span class="hljs-keyword">in</span> classes[i]:
+            <span class="hljs-keyword">if</span>(lables[index][<span class="hljs-number">0</span>] != result[i]):
+                error+=<span class="hljs-number">1</span>
+    print(<span class="hljs-number">1</span>-error/<span class="hljs-number">150.0</span>)
+    <span class="hljs-keyword">return</span></code></pre>
+<pre><code class="hljs python">result,count,classes,lables = kMeans(<span class="hljs-number">20</span>)
+
+test(result,classes,<span class="hljs-number">3</span>,lables)</code></pre>
+
             </article>
             <hr>
             <div>
@@ -181,7 +301,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/MachineLearningInAction/">MachineLearningInAction</a>
+                      <a class="hover-with-bg" href="/categories/UniqueStudioCamp/">UniqueStudioCamp</a>
                     
                   </div>
                 
@@ -193,18 +313,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/08/kMeans%E5%88%9D%E6%AD%A5%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8Eiris%E6%95%B0%E6%8D%AE%E9%9B%86/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">kMeans初步实现-基于iris数据集</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/28/Logistic%E5%9B%9E%E5%BD%92/">
-                        <span class="hidden-mobile">Logistic回归</span>
+                      <a href="/2020/07/02/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/">
+                        <span class="hidden-mobile">支持向量机</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -370,7 +484,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "支持向量机&nbsp;",
+        "kMeans初步实现-基于iris数据集&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 140,
